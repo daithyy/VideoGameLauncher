@@ -1,0 +1,98 @@
+﻿<Controls:MetroWindow x:Class="VideoGameLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VideoGameLauncher"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+        Title="Video Game Launcher" Height="632" Width="800"
+        ResizeMode="CanMinimize"
+        BorderBrush="{DynamicResource AccentColorBrush}"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1"
+        
+        WindowTransitionsEnabled="False"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label x:Name="lblTitle" Content="LAUNCHER APP"
+               HorizontalContentAlignment="Center" Margin="40,304,442,239" Foreground="White"
+               FontSize="40" FontFamily="Lato Semibold" />
+
+        <Controls:Tile
+               Title="Player Customization"
+               ToolTip="Customize Your Avatar and Username"
+               Width="Auto"
+               Height="95"
+               Margin="407,91,10,0"
+               VerticalAlignment="Top"
+               Foreground="{DynamicResource IdealForegroundColorBrush}">
+            <Rectangle x:Name="CustomIcon" Width="64" Height="64" Fill="White">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform"
+                    Visual="{StaticResource appbar_draw_paintbrush}" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Controls:Tile>
+
+        <Controls:Tile Title="Graphics Settings"
+               ToolTip="Change Graphical Options and Tweaks"
+               Width="Auto"
+               Height="95"
+               Margin="407,217,10,0"
+               VerticalAlignment="Top"
+               Foreground="{DynamicResource IdealForegroundColorBrush}">
+            <Rectangle x:Name="SettingsIcon" Width="64" Height="64" Fill="White">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform"
+                    Visual="{StaticResource appbar_settings}" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Controls:Tile>
+
+        <Controls:Tile Title="Modification Managing"
+               ToolTip="Download and Install Your Mods"
+               Width="Auto"
+               Height="95"
+               Margin="407,341,10,0"
+               VerticalAlignment="Top" 
+               Foreground="{DynamicResource IdealForegroundColorBrush}">
+            <Rectangle x:Name="ModIcon" Width="64" Height="64" Fill="White">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform"
+                    Visual="{StaticResource appbar_cogs}" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Controls:Tile>
+
+        <Controls:Tile Title="VOIP Options"
+               ToolTip="Adjust Voice Over IP Settings"
+               Width="Auto"
+               Height="95"
+               Margin="407,466,10,0"
+               VerticalAlignment="Top"
+               Foreground="{DynamicResource IdealForegroundColorBrush}">
+            <Rectangle x:Name="VOIPIcon" Width="64" Height="64" Fill="White">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Uniform"
+                    Visual="{StaticResource appbar_microphone_google}" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Controls:Tile>
+
+        <Button x:Name="btnPlay" Style="{StaticResource AccentedSquareButtonStyle}"
+                Content="PLAY" HorizontalAlignment="Left" Controls:ButtonHelper.PreserveTextCase="True"
+                Margin="407,20,0,0" VerticalAlignment="Top" Width="150" Height="50"
+                FontSize="16" BorderBrush="{x:Null}" />
+        <Button x:Name="btnUpdate" Style="{StaticResource AccentedSquareButtonStyle}"
+                Content="Update" HorizontalAlignment="Left" Controls:ButtonHelper.PreserveTextCase="True"
+                Margin="640,20,0,0" VerticalAlignment="Top" Width="150" Height="50"
+                FontSize="16" BorderBrush="{x:Null}" />
+
+        <Label x:Name="lblVersion" Content="Current Version: 0.0.1"
+           Controls:ButtonHelper.PreserveTextCase="True"
+           FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush}" 
+           Margin="6,566,55,5" HorizontalContentAlignment="Left"
+           BorderBrush="{x:Null}" Background="{x:Null}" />
+    </Grid>
+</Controls:MetroWindow>
