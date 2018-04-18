@@ -15,84 +15,97 @@
         WindowTransitionsEnabled="False"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label x:Name="lblTitle" Content="LAUNCHER APP"
-               HorizontalContentAlignment="Center" Margin="40,304,442,239" Foreground="White"
-               FontSize="40" FontFamily="Lato Semibold" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Controls:Tile
+        <Button x:Name="btnPlay" Style="{StaticResource AccentedSquareButtonStyle}" Grid.Row="1" Grid.Column="1"
+                Content="PLAY" HorizontalAlignment="Left" Controls:ButtonHelper.PreserveTextCase="True"
+                VerticalAlignment="Center" Width="150" Height="50"
+                FontSize="16" BorderBrush="{x:Null}" />
+
+        <Button x:Name="btnUpdate" Style="{StaticResource AccentedSquareButtonStyle}" Grid.Row="1" Grid.Column="2"
+                Content="Update" HorizontalAlignment="Right" Controls:ButtonHelper.PreserveTextCase="True"
+                VerticalAlignment="Center" Width="150" Height="50"
+                FontSize="16" BorderBrush="{x:Null}" />
+
+        <StackPanel local:MarginSetter.Margin="0,20,0,10" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" >
+            <Controls:Tile
                Title="Player Customization"
                ToolTip="Customize Your Avatar and Username"
                Width="Auto"
                Height="95"
-               Margin="407,91,10,0"
                VerticalAlignment="Top"
                Foreground="{DynamicResource IdealForegroundColorBrush}">
-            <Rectangle x:Name="CustomIcon" Width="64" Height="64" Fill="White">
-                <Rectangle.OpacityMask>
-                    <VisualBrush Stretch="Uniform"
+                <Rectangle x:Name="CustomIcon" Width="64" Height="64" Fill="White">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
                     Visual="{StaticResource appbar_draw_paintbrush}" />
-                </Rectangle.OpacityMask>
-            </Rectangle>
-        </Controls:Tile>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Controls:Tile>
 
-        <Controls:Tile Title="Graphics Settings"
+            <Controls:Tile Title="Graphics Settings"
                ToolTip="Change Graphical Options and Tweaks"
-               Width="Auto"
+               Width="auto"
                Height="95"
-               Margin="407,217,10,0"
                VerticalAlignment="Top"
                Foreground="{DynamicResource IdealForegroundColorBrush}">
-            <Rectangle x:Name="SettingsIcon" Width="64" Height="64" Fill="White">
-                <Rectangle.OpacityMask>
-                    <VisualBrush Stretch="Uniform"
+                <Rectangle x:Name="SettingsIcon" Width="64" Height="64" Fill="White">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
                     Visual="{StaticResource appbar_settings}" />
-                </Rectangle.OpacityMask>
-            </Rectangle>
-        </Controls:Tile>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Controls:Tile>
 
-        <Controls:Tile Title="Modification Managing"
+            <Controls:Tile Title="Modification Managing"
                ToolTip="Download and Install Your Mods"
                Width="Auto"
                Height="95"
-               Margin="407,341,10,0"
                VerticalAlignment="Top" 
                Foreground="{DynamicResource IdealForegroundColorBrush}">
-            <Rectangle x:Name="ModIcon" Width="64" Height="64" Fill="White">
-                <Rectangle.OpacityMask>
-                    <VisualBrush Stretch="Uniform"
+                <Rectangle x:Name="ModIcon" Width="64" Height="64" Fill="White">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
                     Visual="{StaticResource appbar_cogs}" />
-                </Rectangle.OpacityMask>
-            </Rectangle>
-        </Controls:Tile>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Controls:Tile>
 
-        <Controls:Tile Title="VOIP Options"
+            <Controls:Tile Title="VOIP Options"
                ToolTip="Adjust Voice Over IP Settings"
                Width="Auto"
                Height="95"
-               Margin="407,466,10,0"
                VerticalAlignment="Top"
                Foreground="{DynamicResource IdealForegroundColorBrush}">
-            <Rectangle x:Name="VOIPIcon" Width="64" Height="64" Fill="White">
-                <Rectangle.OpacityMask>
-                    <VisualBrush Stretch="Uniform"
+                <Rectangle x:Name="VOIPIcon" Width="64" Height="64" Fill="White">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
                     Visual="{StaticResource appbar_microphone_google}" />
-                </Rectangle.OpacityMask>
-            </Rectangle>
-        </Controls:Tile>
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Controls:Tile>
+        </StackPanel>
 
-        <Button x:Name="btnPlay" Style="{StaticResource AccentedSquareButtonStyle}"
-                Content="PLAY" HorizontalAlignment="Left" Controls:ButtonHelper.PreserveTextCase="True"
-                Margin="407,20,0,0" VerticalAlignment="Top" Width="150" Height="50"
-                FontSize="16" BorderBrush="{x:Null}" />
-        <Button x:Name="btnUpdate" Style="{StaticResource AccentedSquareButtonStyle}"
-                Content="Update" HorizontalAlignment="Left" Controls:ButtonHelper.PreserveTextCase="True"
-                Margin="640,20,0,0" VerticalAlignment="Top" Width="150" Height="50"
-                FontSize="16" BorderBrush="{x:Null}" />
+        <Label x:Name="lblTitle" Content="CROSSHAIR CREDITS"
+               HorizontalContentAlignment="Center" Foreground="White"
+               FontSize="40" FontFamily="Lato Semibold" Grid.Row="2" Grid.Column="0"
+               HorizontalAlignment="Center" VerticalAlignment="Center" />
 
         <Label x:Name="lblVersion" Content="Current Version: 0.0.1"
            Controls:ButtonHelper.PreserveTextCase="True"
-           FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush}" 
-           Margin="6,566,55,5" HorizontalContentAlignment="Left"
-           BorderBrush="{x:Null}" Background="{x:Null}" />
+           VerticalAlignment="Top" Margin="20,0,0,0"
+           FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush}" HorizontalContentAlignment="Left"
+           BorderBrush="{x:Null}" Background="{x:Null}" Grid.Row="3" Grid.Column="0"/>
     </Grid>
 </Controls:MetroWindow>
