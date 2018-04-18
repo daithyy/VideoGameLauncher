@@ -102,6 +102,8 @@
                FontSize="40" FontFamily="Lato Semibold" Grid.Row="2" Grid.Column="0"
                HorizontalAlignment="Center" VerticalAlignment="Center" />
 
+        <Image Source="{StaticResource logoDrawingImage}" Grid.Column="0" Grid.Row="2" Width="100"/>
+
         <Label x:Name="lblVersion" Content="Current Version: 0.0.1"
            Controls:ButtonHelper.PreserveTextCase="True"
            VerticalAlignment="Top" Margin="20,0,0,0"
