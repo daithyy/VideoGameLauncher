@@ -97,17 +97,17 @@
             </Controls:Tile>
         </StackPanel>
 
-        <Label x:Name="lblTitle" Content="CROSSHAIR CREDITS"
+        <!--<Label x:Name="lblTitle" Content="CROSSHAIR CREDITS"
                HorizontalContentAlignment="Center" Foreground="White"
                FontSize="40" FontFamily="Lato Semibold" Grid.Row="2" Grid.Column="0"
-               HorizontalAlignment="Center" VerticalAlignment="Center" />
+               HorizontalAlignment="Center" VerticalAlignment="Center" />-->
 
-        <Image Source="{StaticResource logoDrawingImage}" Grid.Column="0" Grid.Row="2" Width="100"/>
+        <Image x:Name="imgLogo" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300"/>
 
-        <Label x:Name="lblVersion" Content="Current Version: 0.0.1"
+        <Label x:Name="lblVersion" Content="Current Version: 0.0.2"
            Controls:ButtonHelper.PreserveTextCase="True"
            VerticalAlignment="Top" Margin="20,0,0,0"
-           FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush}" HorizontalContentAlignment="Left"
+           FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush4}" HorizontalContentAlignment="Left"
            BorderBrush="{x:Null}" Background="{x:Null}" Grid.Row="3" Grid.Column="0"/>
     </Grid>
 </Controls:MetroWindow>
