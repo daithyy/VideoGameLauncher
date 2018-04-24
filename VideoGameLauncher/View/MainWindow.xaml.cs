@@ -42,5 +42,39 @@ namespace VideoGameLauncher
                     Content = error_text_block;
                 }
         }
+
+        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #region Flyout Controls
+
+        private async void FlyoutHandler(Flyout sender)
+        {
+            sender.IsOpen = true;
+            foreach (Flyout fly in allFlyouts.FindChildren<Flyout>())
+                if (fly.Header != sender.Header)
+                {
+                    await Task.Run(() => AsyncFlyoutHandler(fly));
+                }
+
+            sender.IsOpen = true;
+        }
+
+        private void AsyncFlyoutHandler(Flyout fly)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                fly.IsOpen = false;
+            });
+        }
+
+        #endregion
+
+        private void PlayerCustomize_Click(object sender, RoutedEventArgs e)
+        {
+            FlyoutHandler(FlyoutPlayerCustomize);
+        }
     }
 }

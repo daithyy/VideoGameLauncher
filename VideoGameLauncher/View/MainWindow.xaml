@@ -1,0 +1,231 @@
+﻿<Controls:MetroWindow x:Class="VideoGameLauncher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VideoGameLauncher"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Video Game Launcher" Height="632" Width="800"
+        ResizeMode="CanMinimize"
+        BorderBrush="{DynamicResource AccentColorBrush}"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1"
+        AllowsTransparency="True"
+        
+        WindowTransitionsEnabled="True"
+        WindowStartupLocation="CenterScreen"
+        ShowIconOnTitleBar="True"
+        Loaded="MetroWindow_Loaded">
+    
+    <!-- Flyout Windows -->
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl x:Name="allFlyouts">
+            <Controls:Flyout Header="Player Customization" Position="Right" Width="405" IsOpen="False" x:Name="FlyoutPlayerCustomize"
+                         Theme="Adapt">
+                <Grid Margin="5,0,5,5">
+                    <StackPanel Orientation="Vertical" Margin="20,10,0,0" VerticalAlignment="Top"
+                        HorizontalAlignment="Left">
+                        <Label FontSize="14" FontWeight="Bold">Player Settings</Label>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <Label FontSize="14">Name:</Label>
+                            <TextBox x:Name="NameBox" Width="200" Height="10" Margin="54,0,0,0"
+                         Controls:TextBoxHelper.Watermark="No Username" MaxLength="15" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                            <Label FontSize="14">Weapon:</Label>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="20,106,0,0" VerticalAlignment="Top"
+                        HorizontalAlignment="Left">
+                        <Label FontSize="14" FontWeight="Bold">Armor Customization</Label>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <Label FontSize="14">Helmet:</Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label FontSize="14">Chest:</Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label FontSize="14">Shoulders:</Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label FontSize="14">Arms:</Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label FontSize="14">Legs:</Label>
+                        </StackPanel>
+
+                        <Label FontSize="14" FontWeight="Bold" Margin="0,5,0,0">Color Customization</Label>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <Label FontSize="14">Primary:</Label>
+                            <wpfTool:ColorPicker Width="200" Margin="44,0,0,0" SelectedColor="#000000"
+                                     x:Name="ClrPrimary"
+                                     ShowDropDownButton="False"
+                                     UsingAlphaChannel="False" ColorMode="ColorCanvas">
+                                <wpfTool:ColorPicker.Background>
+                                    <SolidColorBrush Color="#252525" />
+                                </wpfTool:ColorPicker.Background>
+                            </wpfTool:ColorPicker>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label FontSize="14">Secondary:</Label>
+                            <wpfTool:ColorPicker Width="200" Margin="27,0,0,0" SelectedColor="#000000"
+                                     x:Name="ClrSecondary"
+                                     ShowDropDownButton="False"
+                                     UsingAlphaChannel="False" ColorMode="ColorCanvas">
+                                <wpfTool:ColorPicker.Background>
+                                    <SolidColorBrush Color="#252525" />
+                                </wpfTool:ColorPicker.Background>
+                            </wpfTool:ColorPicker>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label FontSize="14">Visor:</Label>
+                            <wpfTool:ColorPicker Width="200" Margin="60,0,0,0" SelectedColor="#000000"
+                                     x:Name="ClrVisor"
+                                     ShowDropDownButton="False"
+                                     UsingAlphaChannel="False" ColorMode="ColorCanvas">
+                                <wpfTool:ColorPicker.Background>
+                                    <SolidColorBrush Color="#252525" />
+                                </wpfTool:ColorPicker.Background>
+                            </wpfTool:ColorPicker>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label FontSize="14">Lights:</Label>
+                            <wpfTool:ColorPicker Width="200" Margin="54,0,0,0" SelectedColor="#000000"
+                                     x:Name="ClrLights"
+                                     ShowDropDownButton="False"
+                                     UsingAlphaChannel="False" ColorMode="ColorCanvas">
+                                <wpfTool:ColorPicker.Background>
+                                    <SolidColorBrush Color="#252525" />
+                                </wpfTool:ColorPicker.Background>
+                            </wpfTool:ColorPicker>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                            <Label FontSize="14">Holo:</Label>
+                            <wpfTool:ColorPicker Width="200" Margin="61,0,0,0" SelectedColor="#000000"
+                                     x:Name="ClrHolo"
+                                     ShowDropDownButton="False"
+                                     UsingAlphaChannel="False" ColorMode="ColorCanvas">
+                                <wpfTool:ColorPicker.Background>
+                                    <SolidColorBrush Color="#252525" />
+                                </wpfTool:ColorPicker.Background>
+                            </wpfTool:ColorPicker>
+                        </StackPanel>
+                        <CheckBox x:Name="RandomCheck"
+                        VerticalAlignment="Bottom" Margin="5,20,0,0">
+                            Randomize Armor on Launch
+                        </CheckBox>
+                    </StackPanel>
+
+                    <Button Style="{StaticResource AccentedSquareButtonStyle}"
+                    Content="Random" Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="75"
+                    Margin="0,40,25,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="{x:Null}" />
+                </Grid>
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Action Buttons -->
+        <Button x:Name="btnPlay" Style="{StaticResource AccentedSquareButtonStyle}" Grid.Row="1" Grid.Column="1"
+                Content="PLAY" HorizontalAlignment="Left" Controls:ButtonHelper.PreserveTextCase="True"
+                VerticalAlignment="Center" Width="150" Height="50"
+                FontSize="16" BorderBrush="{x:Null}" />
+
+        <Button x:Name="btnUpdate" Style="{StaticResource AccentedSquareButtonStyle}" Grid.Row="1" Grid.Column="2"
+                Content="Update" HorizontalAlignment="Right" Controls:ButtonHelper.PreserveTextCase="True"
+                VerticalAlignment="Center" Width="150" Height="50"
+                FontSize="16" BorderBrush="{x:Null}" />
+
+        <!-- Main Buttons -->
+        <StackPanel local:MarginSetter.Margin="0,20,0,10" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" >
+            <Controls:Tile
+               Title="Player Customization"
+               ToolTip="Customize Your Avatar and Username"
+               Width="Auto"
+               Height="95"
+               VerticalAlignment="Top"
+               Foreground="{DynamicResource IdealForegroundColorBrush}"
+               Click="PlayerCustomize_Click">
+                <Rectangle x:Name="CustomIcon" Width="64" Height="64" Fill="White">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                    Visual="{StaticResource appbar_draw_paintbrush}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Controls:Tile>
+
+            <Controls:Tile Title="Graphics Settings"
+               ToolTip="Change Graphical Options and Tweaks"
+               Width="auto"
+               Height="95"
+               VerticalAlignment="Top"
+               Foreground="{DynamicResource IdealForegroundColorBrush}">
+                <Rectangle x:Name="SettingsIcon" Width="64" Height="64" Fill="White">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                    Visual="{StaticResource appbar_settings}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Controls:Tile>
+
+            <Controls:Tile Title="Modification Managing"
+               ToolTip="Download and Install Your Mods"
+               Width="Auto"
+               Height="95"
+               VerticalAlignment="Top" 
+               Foreground="{DynamicResource IdealForegroundColorBrush}">
+                <Rectangle x:Name="ModIcon" Width="64" Height="64" Fill="White">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                    Visual="{StaticResource appbar_cogs}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Controls:Tile>
+
+            <Controls:Tile Title="VOIP Options"
+               ToolTip="Adjust Voice Over IP Settings"
+               Width="Auto"
+               Height="95"
+               VerticalAlignment="Top"
+               Foreground="{DynamicResource IdealForegroundColorBrush}">
+                <Rectangle x:Name="VOIPIcon" Width="64" Height="64" Fill="White">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                    Visual="{StaticResource appbar_microphone_google}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Controls:Tile>
+        </StackPanel>
+
+        <!--<Label x:Name="lblTitle" Content="CROSSHAIR CREDITS"
+               HorizontalContentAlignment="Center" Foreground="White"
+               FontSize="40" FontFamily="Lato Semibold" Grid.Row="2" Grid.Column="0"
+               HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+
+        <!-- Logo -->
+        <Image x:Name="imgLogo" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300"/>
+
+        <!-- Version Watermark -->
+        <Label x:Name="lblVersion" Content="Current Version: 0.0.2"
+           Controls:ButtonHelper.PreserveTextCase="True"
+           VerticalAlignment="Top" Margin="20,0,0,0"
+           FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush4}" HorizontalContentAlignment="Left"
+           BorderBrush="{x:Null}" Background="{x:Null}" Grid.Row="3" Grid.Column="0"/>
+    </Grid>
+</Controls:MetroWindow>
