@@ -8,6 +8,7 @@ namespace VideoGameLauncher.Classes
 {
     public class Player
     {
-
+        public string Name;
+        public Weapon CurrentWeapon;
     }
 }

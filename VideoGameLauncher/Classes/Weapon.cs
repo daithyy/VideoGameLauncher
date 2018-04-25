@@ -8,6 +8,13 @@ namespace VideoGameLauncher.Classes
 {
     public class Weapon
     {
+        public int DamageValue;
+        public int AmmoCount;
+        public string Name;
 
+        public override string ToString()
+        {
+            return Name.ToString();
+        }
     }
 }
