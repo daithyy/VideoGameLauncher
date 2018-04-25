@@ -48,7 +48,7 @@
     <!-- Flyout Windows -->
     <Controls:MetroWindow.Flyouts>
         <Controls:FlyoutsControl x:Name="allFlyouts">
-            <Controls:Flyout Header="Player Customization" Position="Right" Width="405" IsOpen="False" x:Name="FlyoutPlayerCustomize"
+            <Controls:Flyout Header="Player Customization" Position="Left" Width="405" IsOpen="False" x:Name="FlyoutPlayerCustomize"
                          Theme="Adapt">
                 <Grid Margin="5,0,5,5">
                     <StackPanel Orientation="Vertical" Margin="20,10,0,0" VerticalAlignment="Top"
@@ -175,8 +175,8 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="18*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -263,8 +263,8 @@
         <!-- Version Watermark -->
         <Label x:Name="lblVersion" Content="Current Version: 0.0.2"
            Controls:ButtonHelper.PreserveTextCase="True"
-           VerticalAlignment="Top" Margin="20,0,0,0"
-           FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush2}" HorizontalContentAlignment="Left"
-           BorderBrush="{x:Null}" Background="{x:Null}" Grid.Row="3" Grid.Column="0"/>
+           VerticalAlignment="Center" Margin="20,0,0,0"
+           FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush2}" HorizontalContentAlignment="Right"
+           BorderBrush="{x:Null}" Background="{x:Null}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
     </Grid>
 </Controls:MetroWindow>
