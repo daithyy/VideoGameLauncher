@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VideoGameLauncher"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:IconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Video Game Launcher" Height="632" Width="800"
@@ -18,6 +19,31 @@
         WindowStartupLocation="CenterScreen"
         ShowIconOnTitleBar="True"
         Loaded="MetroWindow_Loaded">
+    
+    <!-- Window Toolbar -->
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button ToolTip="Crosshair Credits GitHub" Click="GitHub_Click">
+                <Rectangle Width="15" Height="15"
+                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Uniform"
+                         Visual="{IconPacks:Material Kind=GithubFace}" />
+                    </Rectangle.OpacityMask>
+                    <Rectangle.Style>
+                        <Style TargetType="{x:Type Rectangle}">
+                            <Setter Property="Fill" Value="{DynamicResource AccentColorBrush2}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Fill" Value="{DynamicResource AccentColorBrush}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
     
     <!-- Flyout Windows -->
     <Controls:MetroWindow.Flyouts>
@@ -35,6 +61,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
                             <Label FontSize="14">Weapon:</Label>
+                            <ComboBox x:Name="cbxWeapon" Width="200" Height="10" Margin="40,0,0,0" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="20,106,0,0" VerticalAlignment="Top"
@@ -42,18 +69,23 @@
                         <Label FontSize="14" FontWeight="Bold">Armor Customization</Label>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
                             <Label FontSize="14">Helmet:</Label>
+                            <ComboBox x:Name="cbxHelmet" Width="200" Height="10" Margin="46,0,0,0" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                             <Label FontSize="14">Chest:</Label>
+                            <ComboBox x:Name="cbxChest" Width="200" Height="10" Margin="56,0,0,0" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                             <Label FontSize="14">Shoulders:</Label>
+                            <ComboBox x:Name="cbxShoulders" Width="200" Height="10" Margin="30,0,0,0" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                            <Label FontSize="14">Arms:</Label>
+                            <Label FontSize="14">Wrist:</Label>
+                            <ComboBox x:Name="cbxWrist" Width="200" Height="10" Margin="59,0,0,0" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                            <Label FontSize="14">Legs:</Label>
+                            <Label FontSize="14">Utility:</Label>
+                            <ComboBox x:Name="cbxUtility" Width="200" Height="10" Margin="55,0,0,0" />
                         </StackPanel>
 
                         <Label FontSize="14" FontWeight="Bold" Margin="0,5,0,0">Color Customization</Label>
@@ -62,7 +94,8 @@
                             <wpfTool:ColorPicker Width="200" Margin="44,0,0,0" SelectedColor="#000000"
                                      x:Name="ClrPrimary"
                                      ShowDropDownButton="False"
-                                     UsingAlphaChannel="False" ColorMode="ColorCanvas">
+                                     UsingAlphaChannel="False" ColorMode="ColorCanvas"
+                                     Template="{DynamicResource ColorPickerControlTemplate}">
                                 <wpfTool:ColorPicker.Background>
                                     <SolidColorBrush Color="#252525" />
                                 </wpfTool:ColorPicker.Background>
@@ -73,7 +106,8 @@
                             <wpfTool:ColorPicker Width="200" Margin="27,0,0,0" SelectedColor="#000000"
                                      x:Name="ClrSecondary"
                                      ShowDropDownButton="False"
-                                     UsingAlphaChannel="False" ColorMode="ColorCanvas">
+                                     UsingAlphaChannel="False" ColorMode="ColorCanvas"
+                                     Template="{DynamicResource ColorPickerControlTemplate}">
                                 <wpfTool:ColorPicker.Background>
                                     <SolidColorBrush Color="#252525" />
                                 </wpfTool:ColorPicker.Background>
@@ -84,7 +118,8 @@
                             <wpfTool:ColorPicker Width="200" Margin="60,0,0,0" SelectedColor="#000000"
                                      x:Name="ClrVisor"
                                      ShowDropDownButton="False"
-                                     UsingAlphaChannel="False" ColorMode="ColorCanvas">
+                                     UsingAlphaChannel="False" ColorMode="ColorCanvas"
+                                     Template="{DynamicResource ColorPickerControlTemplate}">
                                 <wpfTool:ColorPicker.Background>
                                     <SolidColorBrush Color="#252525" />
                                 </wpfTool:ColorPicker.Background>
@@ -95,7 +130,8 @@
                             <wpfTool:ColorPicker Width="200" Margin="54,0,0,0" SelectedColor="#000000"
                                      x:Name="ClrLights"
                                      ShowDropDownButton="False"
-                                     UsingAlphaChannel="False" ColorMode="ColorCanvas">
+                                     UsingAlphaChannel="False" ColorMode="ColorCanvas"
+                                     Template="{DynamicResource ColorPickerControlTemplate}">
                                 <wpfTool:ColorPicker.Background>
                                     <SolidColorBrush Color="#252525" />
                                 </wpfTool:ColorPicker.Background>
@@ -106,21 +142,23 @@
                             <wpfTool:ColorPicker Width="200" Margin="61,0,0,0" SelectedColor="#000000"
                                      x:Name="ClrHolo"
                                      ShowDropDownButton="False"
-                                     UsingAlphaChannel="False" ColorMode="ColorCanvas">
+                                     UsingAlphaChannel="False" ColorMode="ColorCanvas"
+                                     Template="{DynamicResource ColorPickerControlTemplate}">
                                 <wpfTool:ColorPicker.Background>
                                     <SolidColorBrush Color="#252525" />
                                 </wpfTool:ColorPicker.Background>
                             </wpfTool:ColorPicker>
                         </StackPanel>
-                        <CheckBox x:Name="RandomCheck"
-                        VerticalAlignment="Bottom" Margin="5,20,0,0">
-                            Randomize Armor on Launch
-                        </CheckBox>
                     </StackPanel>
 
                     <Button Style="{StaticResource AccentedSquareButtonStyle}"
-                    Content="Random" Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="75"
+                    Content="Save Profile" Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="75"
                     Margin="0,40,25,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="{x:Null}" />
+                    
+                    <Button Style="{StaticResource AccentedSquareButtonStyle}"
+                    Content="Load Profile" Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="75"
+                    Margin="0,40,125,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                     HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="{x:Null}" />
                 </Grid>
             </Controls:Flyout>
@@ -128,6 +166,7 @@
     </Controls:MetroWindow.Flyouts>
 
     <Grid>
+        <!-- Grid Layouts -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
@@ -225,7 +264,7 @@
         <Label x:Name="lblVersion" Content="Current Version: 0.0.2"
            Controls:ButtonHelper.PreserveTextCase="True"
            VerticalAlignment="Top" Margin="20,0,0,0"
-           FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush4}" HorizontalContentAlignment="Left"
+           FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush2}" HorizontalContentAlignment="Left"
            BorderBrush="{x:Null}" Background="{x:Null}" Grid.Row="3" Grid.Column="0"/>
     </Grid>
 </Controls:MetroWindow>

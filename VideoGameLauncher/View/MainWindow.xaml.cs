@@ -16,15 +16,19 @@ using System.Windows.Shapes;
 
 using MahApps.Metro.Controls;
 using Svg2Xaml;
+using System.Diagnostics;
 
 namespace VideoGameLauncher
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        #region Properties
+
         private readonly string LogoFilePath = "Images\\logo.svg";
+
+        #endregion
+
+        #region Initialize
 
         public MainWindow()
         {
@@ -47,6 +51,8 @@ namespace VideoGameLauncher
         {
 
         }
+
+        #endregion
 
         #region Flyout Controls
 
@@ -72,9 +78,18 @@ namespace VideoGameLauncher
 
         #endregion
 
+        #region Click Events
+
         private void PlayerCustomize_Click(object sender, RoutedEventArgs e)
         {
             FlyoutHandler(FlyoutPlayerCustomize);
         }
+
+        private void GitHub_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/s00172994/VideoGameLauncher");
+        }
+
+        #endregion
     }
 }
