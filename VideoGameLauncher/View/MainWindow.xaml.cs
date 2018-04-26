@@ -17,13 +17,23 @@ using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using Svg2Xaml;
 using System.Diagnostics;
+using Newtonsoft.Json;
+using VideoGameLauncher.Classes;
 
 namespace VideoGameLauncher
 {
     public partial class MainWindow : MetroWindow
     {
+        /*
+         * Extra Features:
+         * MahApps Metro Theme
+         * Extended WPF Toolkit Color Picker
+         * (Expired license requires a reinstall from NuGet Package Manager)
+         */
+
         #region Properties
 
+        JsonSerializerSettings settings;
         public readonly string BasePath = Directory.GetCurrentDirectory();
         private readonly string LogoFilePath = "Images\\logo.svg";
 
@@ -50,7 +60,12 @@ namespace VideoGameLauncher
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            };
 
+            LoadPlayerCustomizationData();
         }
 
         private void LoadPlayerCustomizationData()
