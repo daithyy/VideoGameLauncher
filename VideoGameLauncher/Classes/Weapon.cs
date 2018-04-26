@@ -18,6 +18,13 @@ namespace VideoGameLauncher.Classes
 
         #region Methods
 
+        public Weapon(string name, int dmg, int ammo)
+        {
+            Name = name;
+            DamageValue = dmg;
+            AmmoCount = ammo;
+        }
+
         public override string ToString()
         {
             return Name.ToString();

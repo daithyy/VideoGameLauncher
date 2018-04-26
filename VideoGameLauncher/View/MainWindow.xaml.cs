@@ -70,7 +70,22 @@ namespace VideoGameLauncher
 
         private void LoadPlayerCustomizationData()
         {
+            List<Weapon> Weapons = new List<Weapon>()
+            {
+                new Weapon("Assault Rifle", 0, 0),
+                new Weapon("Battle Rifle", 0, 0),
+                new Weapon("Sniper Rifle", 0, 0),
+                new Weapon("Shotgun", 0, 0),
+                new Weapon("DMR Rifle", 0, 0),
+                new Weapon("Magnum Pistol", 0, 0),
+                new Weapon("SMG", 0, 0),
+                new Weapon("Grenade Launcher", 0, 0),
+                new Weapon("Spartan Laser", 0, 0),
+                new Weapon("Rocket Launcher", 0, 0)
+            };
 
+            cbxWeapon.ItemsSource = Weapons.OrderBy(w => w.Name);
+            cbxWeapon.SelectedIndex = 0;
         }
 
         #endregion
