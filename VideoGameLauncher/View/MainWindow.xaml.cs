@@ -24,6 +24,7 @@ namespace VideoGameLauncher
     {
         #region Properties
 
+        public readonly string BasePath = Directory.GetCurrentDirectory();
         private readonly string LogoFilePath = "Images\\logo.svg";
 
         #endregion
@@ -48,6 +49,11 @@ namespace VideoGameLauncher
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LoadPlayerCustomizationData()
         {
 
         }
