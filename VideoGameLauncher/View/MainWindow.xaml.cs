@@ -201,7 +201,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Error: Player name is empty.\n" + error.Message);
+                CreateMsgBox("Error: Player name is corrupt.\n", error.Message);
             }
 
             #endregion
@@ -218,7 +218,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Error: Weapon not found.\n" + error.Message);
+                CreateMsgBox("Error: Weapon not found.\n", error.Message);
             }
 
             #endregion
@@ -234,7 +234,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Error: Helmet not found.\n" + error.Message);
+                CreateMsgBox("Error: Helmet not found.\n", error.Message);
             }
 
 
@@ -247,7 +247,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Loaded Shoulder not found.\n" + error.Message);
+                CreateMsgBox("Loaded Shoulder not found.\n", error.Message);
             }
 
 
@@ -260,7 +260,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Loaded Chest not found.\n" + error.Message);
+                CreateMsgBox("Loaded Chest not found.\n", error.Message);
             }
 
             #endregion
@@ -276,7 +276,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Error: Wrist not found.\n" + error.Message);
+                CreateMsgBox("Error: Wrist not found.\n", error.Message);
             }
 
             #endregion
@@ -292,7 +292,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Error: Utility not found.\n" + error.Message);
+                CreateMsgBox("Error: Utility not found.\n", error.Message);
             }
 
             #endregion
@@ -305,7 +305,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Error: Empty Primary Color.\n" + error.Message);
+                CreateMsgBox("Error: Empty Primary Color.\n", error.Message);
             }
 
             try
@@ -314,7 +314,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Error: Empty Secondary Color.\n" + error.Message);
+                CreateMsgBox("Error: Empty Secondary Color.\n", error.Message);
             }
 
             try
@@ -323,7 +323,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Error: Empty Lights Color.\n" + error.Message);
+                CreateMsgBox("Error: Empty Lights Color.\n", error.Message);
             }
 
             try
@@ -332,7 +332,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Error: Empty Visor Color.\n" + error.Message);
+                CreateMsgBox("Error: Empty Visor Color.\n", error.Message);
             }
 
             try
@@ -341,7 +341,7 @@ namespace VideoGameLauncher
             }
             catch (NullReferenceException error)
             {
-                MessageBox.Show("Error: Empty Holo Color.\n" + error.Message);
+                CreateMsgBox("Error: Empty Holo Color.\n", error.Message);
             }
 
             #endregion
@@ -415,6 +415,14 @@ namespace VideoGameLauncher
                 Wrist = (Armor)cbxWrist.SelectedItem,
                 Utility = (Armor)cbxUtility.SelectedItem
             };
+        }
+
+        private void CreateMsgBox(string header, string text)
+        {
+            var messageWindow = new MsgBox(header, text);
+
+            messageWindow.Show();
+            messageWindow.Focus();
         }
 
         #endregion
