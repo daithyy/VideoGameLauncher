@@ -10,19 +10,19 @@ namespace VideoGameLauncher.Classes
     {
         #region Properties
 
-        public int DamageValue;
-        public int AmmoCount;
+        public float DamageValue;
+        public int MagazineSize;
         public string Name;
 
         #endregion
 
         #region Methods
 
-        public Weapon(string name, int dmg, int ammo)
+        public Weapon(string name, float dmg, int magSize)
         {
             Name = name;
             DamageValue = dmg;
-            AmmoCount = ammo;
+            MagazineSize = magSize;
         }
 
         public override string ToString()

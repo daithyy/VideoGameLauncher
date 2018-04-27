@@ -45,6 +45,7 @@ namespace VideoGameLauncher
         {
             InitializeComponent();
 
+            // Load SVG Image using SVG2XAML converter.
             using (FileStream stream = new FileStream(LogoFilePath, FileMode.Open, FileAccess.Read))
                 try
                 {
@@ -60,32 +61,102 @@ namespace VideoGameLauncher
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            // Set JSON Serializing settings for saving/loading data.
             settings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.All
             };
 
-            LoadPlayerCustomizationData();
+            // Load Flyout Window Content
+            CreatePlayerCustomizeData();
         }
 
-        private void LoadPlayerCustomizationData()
+        private void CreatePlayerCustomizeData()
         {
+            #region Weapons
+
             List<Weapon> Weapons = new List<Weapon>()
             {
-                new Weapon("Assault Rifle", 0, 0),
-                new Weapon("Battle Rifle", 0, 0),
-                new Weapon("Sniper Rifle", 0, 0),
-                new Weapon("Shotgun", 0, 0),
-                new Weapon("DMR Rifle", 0, 0),
-                new Weapon("Magnum Pistol", 0, 0),
-                new Weapon("SMG", 0, 0),
-                new Weapon("Grenade Launcher", 0, 0),
-                new Weapon("Spartan Laser", 0, 0),
-                new Weapon("Rocket Launcher", 0, 0)
+                new Weapon("Assault Rifle", 7.5f, 32),
+                new Weapon("Battle Rifle", 6, 36),
+                new Weapon("Sniper Rifle", 80, 4),
+                new Weapon("Shotgun", 150, 6),
+                new Weapon("DMR Rifle", 17.5f, 15),
+                new Weapon("Magnum Pistol", 15, 8),
+                new Weapon("SMG", 4.8f, 60),
+                new Weapon("Grenade Launcher", 150, 1),
+                new Weapon("Spartan Laser", 284, 1),
+                new Weapon("Rocket Launcher", 220, 2)
             };
 
             cbxWeapon.ItemsSource = Weapons.OrderBy(w => w.Name);
             cbxWeapon.SelectedIndex = 0;
+
+            #endregion
+
+            #region Armors
+
+            // All Armor Permutations between Helmet, Shoulders and Chest are the same.
+
+            List<Armor> Armors = new List<Armor>()
+            {
+                new Armor("Mark VI"),
+                new Armor("CQB"),
+                new Armor("EVA"),
+                new Armor("EOD"),
+                new Armor("Hayabusa"),
+                new Armor("Security"),
+                new Armor("Recon"),
+                new Armor("ODST"),
+                new Armor("Mark V"),
+                new Armor("Rogue")
+            };
+
+            cbxHelmet.ItemsSource = Armors;
+            cbxHelmet.SelectedIndex = 0;
+
+            cbxShoulders.ItemsSource = Armors;
+            cbxShoulders.SelectedIndex = 0;
+
+            cbxChest.ItemsSource = Armors;
+            cbxChest.SelectedIndex = 0;
+
+            #endregion
+
+            #region Wrist
+
+            List<Armor> Wrists = new List<Armor>()
+            {
+                new Armor("Mark VI"),
+                new Armor("Breacher"),
+                new Armor("Assault"),
+                new Armor("TacPad"),
+                new Armor("UGPS"),
+                new Armor("Buckler"),
+                new Armor("Bracer")
+            };
+
+            cbxWrist.ItemsSource = Wrists;
+            cbxWrist.SelectedIndex = 0;
+
+            #endregion
+
+            #region Utility
+
+            List<Armor> Utilties = new List<Armor>()
+            {
+                new Armor("None"),
+                new Armor("Hard Case"),
+                new Armor("Trauma Kit"),
+                new Armor("Soft Case"),
+                new Armor("Chobham"),
+                new Armor("NxRA")
+            };
+
+            cbxUtility.ItemsSource = Utilties;
+            cbxUtility.SelectedIndex = 0;
+
+            #endregion
         }
 
         #endregion
@@ -95,6 +166,7 @@ namespace VideoGameLauncher
         private async void FlyoutHandler(Flyout sender)
         {
             sender.IsOpen = true;
+
             foreach (Flyout fly in allFlyouts.FindChildren<Flyout>())
                 if (fly.Header != sender.Header)
                 {
@@ -116,14 +188,27 @@ namespace VideoGameLauncher
 
         #region Click Events
 
+        // Main Window Toolbar Click Events
+        private void GitHub_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/s00172994/VideoGameLauncher");
+        }
+
+        // Flyout Click Events
         private void PlayerCustomize_Click(object sender, RoutedEventArgs e)
         {
             FlyoutHandler(FlyoutPlayerCustomize);
         }
 
-        private void GitHub_Click(object sender, RoutedEventArgs e)
+        // Player Customization Click Events
+        private void SaveProfile_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://github.com/s00172994/VideoGameLauncher");
+
+        }
+
+        private void LoadProfile_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         #endregion

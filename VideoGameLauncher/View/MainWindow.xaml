@@ -8,7 +8,7 @@
         xmlns:IconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Video Game Launcher" Height="632" Width="800"
+        Title="Video Game Launcher App" Height="632" Width="800"
         ResizeMode="CanMinimize"
         BorderBrush="{DynamicResource AccentColorBrush}"
         GlowBrush="{DynamicResource AccentColorBrush}"
@@ -23,7 +23,7 @@
     <!-- Window Toolbar -->
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
-            <Button ToolTip="Crosshair Credits GitHub" Click="GitHub_Click">
+            <Button ToolTip="View GitHub Repository" Click="GitHub_Click">
                 <Rectangle Width="15" Height="15"
                    Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
                     <Rectangle.OpacityMask>
@@ -154,12 +154,14 @@
                     <Button Style="{StaticResource AccentedSquareButtonStyle}"
                     Content="Save Profile" Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="75"
                     Margin="0,40,25,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="{x:Null}" />
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="{x:Null}" 
+                    Click="SaveProfile_Click"/>
                     
                     <Button Style="{StaticResource AccentedSquareButtonStyle}"
                     Content="Load Profile" Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="75"
                     Margin="0,40,125,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="{x:Null}" />
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="{x:Null}" 
+                    Click="LoadProfile_Click"/>
                 </Grid>
             </Controls:Flyout>
         </Controls:FlyoutsControl>
@@ -251,11 +253,6 @@
                 </Rectangle>
             </Controls:Tile>
         </StackPanel>
-
-        <!--<Label x:Name="lblTitle" Content="CROSSHAIR CREDITS"
-               HorizontalContentAlignment="Center" Foreground="White"
-               FontSize="40" FontFamily="Lato Semibold" Grid.Row="2" Grid.Column="0"
-               HorizontalAlignment="Center" VerticalAlignment="Center" />-->
 
         <!-- Logo -->
         <Image x:Name="imgLogo" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="300"/>

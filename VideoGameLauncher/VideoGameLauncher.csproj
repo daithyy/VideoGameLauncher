@@ -125,11 +125,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Armor.cs" />
-    <Compile Include="Classes\Armors\Chest.cs" />
-    <Compile Include="Classes\Armors\Helmet.cs" />
-    <Compile Include="Classes\Armors\Shoulders.cs" />
-    <Compile Include="Classes\Armors\Utility.cs" />
-    <Compile Include="Classes\Armors\Wrist.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Weapon.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
