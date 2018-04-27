@@ -24,25 +24,20 @@ namespace VideoGameLauncher.Classes
         public Armor Wrist;
 
         // Armor Colors
-        private Color PrimaryColour;
-        private Color SecondaryColour;
-        private Color LightsColour;
-        private Color VisorColour;
-        private Color HoloColour;
-        public SolidColorBrush PrimaryColor;
-        public SolidColorBrush SecondaryColor;
-        public SolidColorBrush LightsColor;
-        public SolidColorBrush VisorColor;
-        public SolidColorBrush HoloColor;
+        public Color? PrimaryColour;
+        public Color? SecondaryColour;
+        public Color? LightsColour;
+        public Color? VisorColour;
+        public Color? HoloColour;
 
         #endregion
 
         #region Constructor
 
         public Player(string name, 
-            Color primaryColor, Color secondaryColor, 
-            Color lightsColor, Color visorColor,
-            Color holoColor)
+            Color? primaryColor, Color? secondaryColor, 
+            Color? lightsColor, Color? visorColor,
+            Color? holoColor)
         {
             Name = name;
 
@@ -51,12 +46,6 @@ namespace VideoGameLauncher.Classes
             LightsColour = lightsColor;
             VisorColour = visorColor;
             HoloColour = holoColor;
-
-            PrimaryColor = new SolidColorBrush(primaryColor);
-            SecondaryColor = new SolidColorBrush(secondaryColor);
-            LightsColor = new SolidColorBrush(lightsColor);
-            VisorColor = new SolidColorBrush(visorColor);
-            HoloColor = new SolidColorBrush(holoColor);
         }
 
         #endregion

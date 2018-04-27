@@ -152,16 +152,34 @@
                     </StackPanel>
 
                     <Button Style="{StaticResource AccentedSquareButtonStyle}"
-                    Content="Save Profile" Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="75"
-                    Margin="0,40,25,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="{x:Null}" 
-                    Click="SaveProfile_Click"/>
-                    
+                    Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="100"
+                    Margin="225,40,0,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="{x:Null}" 
+                    Click="SaveProfile_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="20" Height="20">
+                                <Rectangle.Fill>
+                                    <VisualBrush Visual="{DynamicResource appbar_save}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock Text="Save Profile" Margin="5,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
                     <Button Style="{StaticResource AccentedSquareButtonStyle}"
-                    Content="Load Profile" Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="75"
-                    Margin="0,40,125,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="{x:Null}" 
-                    Click="LoadProfile_Click"/>
+                    Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="100"
+                    Margin="25,40,0,10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="{x:Null}" 
+                    Click="LoadProfile_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="20" Height="20">
+                                <Rectangle.Fill>
+                                    <VisualBrush Visual="{DynamicResource appbar_user_add}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock Text="Load Profile" Margin="5,0,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
                 </Grid>
             </Controls:Flyout>
         </Controls:FlyoutsControl>
