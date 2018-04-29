@@ -399,7 +399,7 @@ namespace VideoGameLauncher
 
         #endregion
 
-        #region Methods
+        #region Save Data
 
         private Player CreatePlayer()
         {
@@ -416,6 +416,10 @@ namespace VideoGameLauncher
                 Utility = (Armor)cbxUtility.SelectedItem
             };
         }
+
+        #endregion
+
+        #region Window Controls
 
         private void CreateMsgBox(string header, string text)
         {
