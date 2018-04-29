@@ -13,8 +13,7 @@
         BorderBrush="{DynamicResource AccentColorBrush}"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1"
-        AllowsTransparency="True"
-        
+        AllowsTransparency="True"        
         WindowTransitionsEnabled="True"
         WindowStartupLocation="CenterScreen"
         ShowIconOnTitleBar="True"
@@ -234,7 +233,8 @@
                Width="auto"
                Height="95"
                VerticalAlignment="Top"
-               Foreground="{DynamicResource IdealForegroundColorBrush}">
+               Foreground="{DynamicResource IdealForegroundColorBrush}"
+               Click="GraphicsSettings_Click">
                 <Rectangle x:Name="SettingsIcon" Width="64" Height="64" Fill="White">
                     <Rectangle.OpacityMask>
                         <VisualBrush Stretch="Uniform"
@@ -248,7 +248,8 @@
                Width="Auto"
                Height="95"
                VerticalAlignment="Top" 
-               Foreground="{DynamicResource IdealForegroundColorBrush}">
+               Foreground="{DynamicResource IdealForegroundColorBrush}"
+               Click="ModManager_Click">
                 <Rectangle x:Name="ModIcon" Width="64" Height="64" Fill="White">
                     <Rectangle.OpacityMask>
                         <VisualBrush Stretch="Uniform"
@@ -262,7 +263,8 @@
                Width="Auto"
                Height="95"
                VerticalAlignment="Top"
-               Foreground="{DynamicResource IdealForegroundColorBrush}">
+               Foreground="{DynamicResource IdealForegroundColorBrush}"
+               Click="VoipOptions_Click">
                 <Rectangle x:Name="VOIPIcon" Width="64" Height="64" Fill="White">
                     <Rectangle.OpacityMask>
                         <VisualBrush Stretch="Uniform"

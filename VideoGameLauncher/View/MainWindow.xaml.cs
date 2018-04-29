@@ -20,6 +20,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using VideoGameLauncher.Classes;
 using Microsoft.Win32;
+using VideoGameLauncher.View;
 
 namespace VideoGameLauncher
 {
@@ -103,6 +104,8 @@ namespace VideoGameLauncher
 
         private void CreatePlayerCustomizeData()
         {
+            // Set Player Customization property defaults.
+
             #region Weapons
 
             List<Weapon> Weapons = new List<Weapon>()
@@ -363,6 +366,28 @@ namespace VideoGameLauncher
             FlyoutHandler(FlyoutPlayerCustomize);
         }
 
+        private void GraphicsSettings_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ModManager_Click(object sender, RoutedEventArgs e)
+        {
+            // Create new window object
+            ModManager window = new ModManager();
+
+            // Set the owner of this new object
+            window.Owner = this;
+
+            // Display the new window
+            window.ShowDialog();
+        }
+
+        private void VoipOptions_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         // Player Customization Click Events
         private void SaveProfile_Click(object sender, RoutedEventArgs e)
         {
@@ -419,7 +444,7 @@ namespace VideoGameLauncher
 
         #endregion
 
-        #region Window Controls
+        #region Dialog Events
 
         private void CreateMsgBox(string header, string text)
         {
