@@ -2,6 +2,7 @@
 using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace VideoGameLauncher.View
         #region Properties
 
         private MainWindow owner;
+        private ObservableCollection<string> profiles;
 
         #endregion
 
@@ -38,6 +40,9 @@ namespace VideoGameLauncher.View
         private void ModManager_Loaded(object sender, RoutedEventArgs e)
         {
             owner = Owner as MainWindow;
+
+            profiles = new ObservableCollection<string>();
+            cbxProfiles.ItemsSource = profiles;
         }
 
         #endregion
@@ -82,14 +87,41 @@ namespace VideoGameLauncher.View
 
         }
 
-        private void btnAddProfile_Click(object sender, RoutedEventArgs e)
+        private async void btnAddProfile_Click(object sender, RoutedEventArgs e)
         {
-            ProfileHandler((Button)sender);
+            var result = await this.ShowInputAsync("Add Profile", "Enter your new profile name:");
+
+            if (result == null) // User pressed cancel.
+                return;
+            else
+            {
+                try
+                {
+                    profiles.Add(result);
+                    cbxProfiles.SelectedItem = result;
+                }
+                catch (InvalidCastException error)
+                {
+                    owner.CreateMsgBox("Error: Invalid profile type added.", error.Message);
+                }
+            }
         }
 
-        private async void ProfileHandler(Button sender)
+        private void btnDeleteProfile_Click(object sender, RoutedEventArgs e)
         {
-            await this.ShowMessageAsync("This is the title", "Some message");
+            if (cbxProfiles.SelectedItem != null) 
+            {
+                try
+                {
+                    profiles.Remove(cbxProfiles.SelectedItem.ToString());
+                    cbxProfiles.SelectedIndex = 0;
+                }
+                catch (NullReferenceException error)
+                {
+                    owner.CreateMsgBox("Error: Current profile is empty.", error.Message);
+                }
+            }
+
         }
     }
 }

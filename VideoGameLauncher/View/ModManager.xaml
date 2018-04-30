@@ -35,7 +35,7 @@
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowFrameColorKey}}" Opacity="0.5"/>
             </StackPanel.Background>
             <Label x:Name="lblProfile" Content="Profile:" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="14"/>
-            <ComboBox x:Name="cbxWeapon" Width="180" Height="10" Margin="5,0,0,0"/>
+            <ComboBox x:Name="cbxProfiles" Width="180" Height="10" Margin="5,0,0,0"/>
             <Button x:Name="btnAddProfile" Width="33" Height="33" VerticalAlignment="Center" Style="{DynamicResource MetroCircleButtonStyle}"
                     Margin="10,0,0,0" Click="btnAddProfile_Click">
                 <Rectangle Width="10" Height="10">
@@ -45,7 +45,7 @@
                 </Rectangle>
             </Button>
             
-            <Button x:Name="btnDeleteProfile" Width="33" Height="33" VerticalAlignment="Center" Style="{DynamicResource MetroCircleButtonStyle}">
+            <Button x:Name="btnDeleteProfile" Width="33" Height="33" VerticalAlignment="Center" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnDeleteProfile_Click">
                 <Rectangle Width="10" Height="2">
                     <Rectangle.Fill>
                         <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_minus}" />
@@ -158,13 +158,21 @@
                     <DataGrid
                     Grid.Column="1"
                     AutoGenerateColumns="False"
-                    Style="{StaticResource AzureDataGrid}">
+                    Style="{StaticResource AzureDataGrid}"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         Header="Selected"
                                         Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
                                         />
+                            <DataGridTextColumn Header="Name" Width="150"/>
+                            <DataGridTextColumn Header="Author" Width="100"/>
+                            <DataGridTextColumn Header="Version" Width="80"/>
+                            <DataGridTextColumn Header="Description" Width="200"/>
+                            <DataGridTextColumn Header="Warnings" Width="120"/>
+                            <DataGridTextColumn Header="File Location" Width="120"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -198,13 +206,21 @@
                     <!-- Downloadable Mods DataGrid -->
                     <DataGrid
                     Grid.Column="1"
-                    AutoGenerateColumns="False">
+                    AutoGenerateColumns="False"
+                    HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         Header="Selected"
                                         Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
                                         />
+                            <DataGridTextColumn Header="Name" Width="150"/>
+                            <DataGridTextColumn Header="Author" Width="100"/>
+                            <DataGridTextColumn Header="Version" Width="80"/>
+                            <DataGridTextColumn Header="Description" Width="200"/>
+                            <DataGridTextColumn Header="Warnings" Width="120"/>
+                            <DataGridTextColumn Header="File Location" Width="120"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
