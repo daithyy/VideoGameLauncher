@@ -8,18 +8,70 @@
         xmlns:IconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:wpfTool="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Modification Manager" Height="632" Width="800"
+        Title="Modification Manager" Height="632" Width="900"
         ResizeMode="CanResizeWithGrip"
         BorderBrush="{DynamicResource AccentColorBrush}"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1"
-        AllowsTransparency="True"
-        
+        AllowsTransparency="True"        
         WindowTransitionsEnabled="True"
         WindowStartupLocation="CenterScreen"
         ShowIconOnTitleBar="True"
         Loaded="ModManager_Loaded">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Header -->
+
+
+        <!-- Tab Controls -->
+        <Controls:MetroAnimatedTabControl TabStripPlacement="Top" Grid.Column="1" Grid.Row="1">
+
+            <!-- Tab Items -->
+            <TabItem Name="myMods" Header="Applied Mods">
+
+                <!-- My Mods DataGrid -->
+                <DataGrid
+                  Grid.Row="0"
+                  AutoGenerateColumns="False"
+                  Style="{StaticResource AzureDataGrid}">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                        EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                        Header="Selected"
+                                        Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
+                                        />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </TabItem>
+
+            <TabItem Name="downloadableMods" Header="Available Mods">
+
+                <!-- Downloadable Mods DataGrid -->
+                <DataGrid
+                  Grid.Row="0"
+                  AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                        EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                                        Header="Selected"
+                                        Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
+                                        />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </TabItem>
+
+        </Controls:MetroAnimatedTabControl>
+
     </Grid>
 </Controls:MetroWindow>
