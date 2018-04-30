@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,46 @@ namespace VideoGameLauncher.View
         private void DeleteMod_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void IncreasePriority_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DecreasePriority_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OpenFolder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ApplyMods_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RestoreFiles_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LaunchGame_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddProfile_Click(object sender, RoutedEventArgs e)
+        {
+            ProfileHandler((Button)sender);
+        }
+
+        private async void ProfileHandler(Button sender)
+        {
+            await this.ShowMessageAsync("This is the title", "Some message");
         }
     }
 }

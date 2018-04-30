@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:utility="clr-namespace:VideoGameLauncher"
         xmlns:local="clr-namespace:VideoGameLauncher.View"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:IconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
@@ -36,7 +37,7 @@
             <Label x:Name="lblProfile" Content="Profile:" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="14"/>
             <ComboBox x:Name="cbxWeapon" Width="180" Height="10" Margin="5,0,0,0"/>
             <Button x:Name="btnAddProfile" Width="33" Height="33" VerticalAlignment="Center" Style="{DynamicResource MetroCircleButtonStyle}"
-                    Margin="10,0,0,0">
+                    Margin="10,0,0,0" Click="btnAddProfile_Click">
                 <Rectangle Width="10" Height="10">
                     <Rectangle.Fill>
                         <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_add}" />
@@ -101,6 +102,58 @@
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
 
+                    <!-- Left Column Group Boxes -->
+                    <StackPanel Orientation="Vertical">
+                        <GroupBox x:Name="groupBoxPriority" Header="Mod Priority" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                            <StackPanel Orientation="Vertical" utility:MarginSetter.Margin="5">
+                                <Button Style="{StaticResource SquareButtonStyle}"
+                                Content="Increase Priority"                                
+                                Controls:ButtonHelper.PreserveTextCase="True" Height="32" 
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                Click="IncreasePriority_Click"/>
+                                <Button Style="{StaticResource SquareButtonStyle}"
+                                Content="Decrease Priority"                                
+                                Controls:ButtonHelper.PreserveTextCase="True" Height="32"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                Click="DecreasePriority_Click"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox x:Name="groupBoxDirectory" Header="Directories" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                            <Button Style="{StaticResource SquareButtonStyle}" Margin="5"
+                                Content="Open Project Folder"                                
+                                Controls:ButtonHelper.PreserveTextCase="True" Height="32"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                Click="OpenFolder_Click"/>
+                        </GroupBox>
+                    </StackPanel>
+
+                    <GroupBox x:Name="groupBoxGame" Header="Game" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                        <StackPanel Orientation="Vertical" utility:MarginSetter.Margin="5">
+                            <Button Style="{StaticResource SquareButtonStyle}"
+                                Content="Apply Selected Mods"                                
+                                Controls:ButtonHelper.PreserveTextCase="True" Height="32"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                Click="ApplyMods_Click"/>
+                            <Button Style="{StaticResource SquareButtonStyle}"
+                                Content="Restore Default Files"                                
+                                Controls:ButtonHelper.PreserveTextCase="True" Height="32"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                Click="RestoreFiles_Click"/>
+                            <Button Style="{StaticResource SquareButtonStyle}"
+                                Content="Launch Game"                                
+                                Controls:ButtonHelper.PreserveTextCase="True" Height="32"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                Click="LaunchGame_Click"/>
+                        </StackPanel>
+                    </GroupBox>
+
                     <!-- My Mods DataGrid -->
                     <DataGrid
                     Grid.Column="1"
@@ -123,6 +176,24 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
+
+                    <!-- Left Column Group Boxes -->
+                    <GroupBox x:Name="groupBoxMod" Header="Mods" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <Button Style="{StaticResource SquareButtonStyle}" Margin="5"
+                                Controls:ButtonHelper.PreserveTextCase="True" Height="32"
+                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                Click="OpenFolder_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="18" Height="20">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Visual="{DynamicResource appbar_download}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <TextBlock Text="Download Selected Mods" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                    </GroupBox>
 
                     <!-- Downloadable Mods DataGrid -->
                     <DataGrid
