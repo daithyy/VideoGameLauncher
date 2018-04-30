@@ -26,51 +26,118 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Header -->
+        <!-- Header Toolbar -->
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowFrameColorKey}}" Opacity="0.5"/>
+            </StackPanel.Background>
+            <Label x:Name="lblProfile" Content="Profile:" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="14"/>
+            <ComboBox x:Name="cbxWeapon" Width="180" Height="10" Margin="5,0,0,0"/>
+            <Button x:Name="btnAddProfile" Width="33" Height="33" VerticalAlignment="Center" Style="{DynamicResource MetroCircleButtonStyle}"
+                    Margin="10,0,0,0">
+                <Rectangle Width="10" Height="10">
+                    <Rectangle.Fill>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_add}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Button>
+            
+            <Button x:Name="btnDeleteProfile" Width="33" Height="33" VerticalAlignment="Center" Style="{DynamicResource MetroCircleButtonStyle}">
+                <Rectangle Width="10" Height="2">
+                    <Rectangle.Fill>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_minus}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Button>
 
+            <Button Style="{StaticResource AccentedSquareButtonStyle}"
+                    Margin="15,0,0,0"
+                    Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="33" 
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    VerticalAlignment="Center" BorderBrush="{x:Null}" 
+                    Click="CreateMod_Click">
+                <Rectangle Width="18" Height="20">
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{DynamicResource appbar_page_add}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Button>
+            
+            <Button Style="{StaticResource AccentedSquareButtonStyle}"
+                    Margin="10,0,0,0"
+                    Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="33" 
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    VerticalAlignment="Center" BorderBrush="{x:Null}" 
+                    Click="DeleteMod_Click">
+                <Rectangle Width="18" Height="20">
+                    <Rectangle.Fill>
+                        <VisualBrush Visual="{DynamicResource appbar_page_delete}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Button>
+
+            <Button x:Name="btnSaveChanges" Height="32" VerticalAlignment="Center" Style="{DynamicResource AccentedSquareButtonStyle}"
+                    Margin="15,0,0,0" BorderBrush="{x:Null}">
+                <StackPanel Orientation="Horizontal">
+                    <Rectangle Width="18" Height="20">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBlock Text="Save Changes" Margin="5,0,0,0" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
 
         <!-- Tab Controls -->
         <Controls:MetroAnimatedTabControl TabStripPlacement="Top" Grid.Column="1" Grid.Row="1">
-
             <!-- Tab Items -->
             <TabItem Name="myMods" Header="Applied Mods">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
 
-                <!-- My Mods DataGrid -->
-                <DataGrid
-                  Grid.Row="0"
-                  AutoGenerateColumns="False"
-                  Style="{StaticResource AzureDataGrid}">
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                    <!-- My Mods DataGrid -->
+                    <DataGrid
+                    Grid.Column="1"
+                    AutoGenerateColumns="False"
+                    Style="{StaticResource AzureDataGrid}">
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         Header="Selected"
                                         Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
                                         />
-                    </DataGrid.Columns>
-                </DataGrid>
-
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </TabItem>
 
             <TabItem Name="downloadableMods" Header="Available Mods">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
 
-                <!-- Downloadable Mods DataGrid -->
-                <DataGrid
-                  Grid.Row="0"
-                  AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                    <!-- Downloadable Mods DataGrid -->
+                    <DataGrid
+                    Grid.Column="1"
+                    AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         Header="Selected"
                                         Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
                                         />
-                    </DataGrid.Columns>
-                </DataGrid>
-
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </TabItem>
-
         </Controls:MetroAnimatedTabControl>
 
     </Grid>

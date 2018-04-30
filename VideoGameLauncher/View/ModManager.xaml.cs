@@ -40,5 +40,15 @@ namespace VideoGameLauncher.View
         }
 
         #endregion
+
+        private void CreateMod_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteMod_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
