@@ -22,8 +22,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="12*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="14*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -44,7 +43,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Button>
-            
+
             <Button x:Name="btnDeleteProfile" Width="33" Height="33" VerticalAlignment="Center" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnDeleteProfile_Click">
                 <Rectangle Width="10" Height="2">
                     <Rectangle.Fill>
@@ -65,7 +64,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Button>
-            
+
             <Button Style="{StaticResource AccentedSquareButtonStyle}"
                     Margin="10,0,0,0"
                     Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="33" 
@@ -101,6 +100,10 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="12*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
                     <!-- Left Column Group Boxes -->
                     <StackPanel Orientation="Vertical">
@@ -176,6 +179,20 @@
                             <DataGridTextColumn Header="File Location" MaxWidth="120" Binding="{Binding Path=Location}"/>
                         </DataGrid.Columns>
                     </DataGrid>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+                        <Label x:Name="lblMyModsFooter" Content="Current Mods Applied: "
+                               Controls:ButtonHelper.PreserveTextCase="True"
+                               VerticalAlignment="Center" Margin="20,0,0,0"
+                               FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush2}" HorizontalContentAlignment="Left"
+                               BorderBrush="{x:Null}" Background="{x:Null}" />
+                        <Label x:Name="lblMyModsCount"
+                               Controls:ButtonHelper.PreserveTextCase="True"
+                               VerticalAlignment="Center"
+                               FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush}" HorizontalContentAlignment="Left"
+                               BorderBrush="{x:Null}" Background="{x:Null}" />
+                    </StackPanel>
+
                 </Grid>
             </TabItem>
 
@@ -185,6 +202,10 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="12*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
                     <!-- Left Column Group Boxes -->
                     <GroupBox x:Name="groupBoxMod" Header="Mods" HorizontalAlignment="Stretch" VerticalAlignment="Top">
@@ -225,6 +246,20 @@
                             <DataGridTextColumn Header="File Location" Width="120" Binding="{Binding Path=Location}"/>
                         </DataGrid.Columns>
                     </DataGrid>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+                        <Label x:Name="lblDownloadModsFooter" Content="Current Mods Available: "
+                               Controls:ButtonHelper.PreserveTextCase="True"
+                               VerticalAlignment="Center" Margin="20,0,0,0"
+                               FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush2}" HorizontalContentAlignment="Left"
+                               BorderBrush="{x:Null}" Background="{x:Null}" />
+                        <Label x:Name="lblDownloadableModsCount"
+                               Controls:ButtonHelper.PreserveTextCase="True"
+                               VerticalAlignment="Center"
+                               FontWeight="Bold" FontSize="12" Foreground="{DynamicResource AccentColorBrush}" HorizontalContentAlignment="Left"
+                               BorderBrush="{x:Null}" Background="{x:Null}" />
+                    </StackPanel>
+
                 </Grid>
             </TabItem>
         </Controls:MetroAnimatedTabControl>

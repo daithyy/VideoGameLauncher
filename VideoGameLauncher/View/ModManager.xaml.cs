@@ -76,6 +76,9 @@ namespace VideoGameLauncher.View
                 };
 
             dataGridDownloadableMods.ItemsSource = query.ToList();
+
+            // Set Footer Count
+            lblDownloadableModsCount.Content = query.Count();
         }
 
         #endregion
