@@ -57,6 +57,11 @@ namespace VideoGameLauncher.View
 
         private void LoadDatabase()
         {
+            //using (db = new ModDBContainer())
+            //{
+            //    db.Database.Connection.Open();
+            //}
+
             db = new ModDBContainer();
         }
 
