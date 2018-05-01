@@ -80,7 +80,7 @@
             </Button>
 
             <Button x:Name="btnSaveChanges" Height="32" VerticalAlignment="Center" Style="{DynamicResource AccentedSquareButtonStyle}"
-                    Margin="15,0,0,0" BorderBrush="{x:Null}">
+                    Margin="15,0,0,0" BorderBrush="{x:Null}" Click="SaveChanges_Click">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="18" Height="20">
                         <Rectangle.Fill>
@@ -156,7 +156,7 @@
 
                     <!-- My Mods DataGrid -->
                     <DataGrid
-                    Grid.Column="1"
+                    x:Name="dataGridMyMods" Grid.Column="1"
                     AutoGenerateColumns="False"
                     Style="{StaticResource AzureDataGrid}"
                     HorizontalScrollBarVisibility="Auto"
@@ -205,7 +205,7 @@
 
                     <!-- Downloadable Mods DataGrid -->
                     <DataGrid
-                    Grid.Column="1"
+                    x:Name="dataGridDownloadableMods" Grid.Column="1"
                     AutoGenerateColumns="False"
                     HorizontalScrollBarVisibility="Auto"
                     VerticalScrollBarVisibility="Auto">

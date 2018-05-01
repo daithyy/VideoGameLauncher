@@ -27,6 +27,7 @@ namespace VideoGameLauncher.View
 
         private MainWindow owner;
         private ObservableCollection<string> profiles;
+        private ModDBContainer db;
 
         #endregion
 
@@ -47,6 +48,45 @@ namespace VideoGameLauncher.View
 
         #endregion
 
+        #region Header Controls
+
+        private async void btnAddProfile_Click(object sender, RoutedEventArgs e)
+        {
+            var result = await this.ShowInputAsync("Add Profile", "Enter your new profile name:");
+
+            if (result == null) // User pressed cancel.
+                return;
+            else
+            {
+                try
+                {
+                    profiles.Add(result);
+                    cbxProfiles.SelectedItem = result;
+                }
+                catch (InvalidCastException error)
+                {
+                    owner.CreateMsgBox("Error: Invalid profile type added.", error.Message);
+                }
+            }
+        }
+
+        private void btnDeleteProfile_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbxProfiles.SelectedItem != null)
+            {
+                try
+                {
+                    profiles.Remove(cbxProfiles.SelectedItem.ToString());
+                    cbxProfiles.SelectedIndex = 0;
+                }
+                catch (NullReferenceException error)
+                {
+                    owner.CreateMsgBox("Error: Current profile is empty.", error.Message);
+                }
+            }
+
+        }
+
         private void CreateMod_Click(object sender, RoutedEventArgs e)
         {
 
@@ -56,6 +96,15 @@ namespace VideoGameLauncher.View
         {
 
         }
+
+        private void SaveChanges_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region Sidebar Controls
 
         private void IncreasePriority_Click(object sender, RoutedEventArgs e)
         {
@@ -87,41 +136,6 @@ namespace VideoGameLauncher.View
 
         }
 
-        private async void btnAddProfile_Click(object sender, RoutedEventArgs e)
-        {
-            var result = await this.ShowInputAsync("Add Profile", "Enter your new profile name:");
-
-            if (result == null) // User pressed cancel.
-                return;
-            else
-            {
-                try
-                {
-                    profiles.Add(result);
-                    cbxProfiles.SelectedItem = result;
-                }
-                catch (InvalidCastException error)
-                {
-                    owner.CreateMsgBox("Error: Invalid profile type added.", error.Message);
-                }
-            }
-        }
-
-        private void btnDeleteProfile_Click(object sender, RoutedEventArgs e)
-        {
-            if (cbxProfiles.SelectedItem != null) 
-            {
-                try
-                {
-                    profiles.Remove(cbxProfiles.SelectedItem.ToString());
-                    cbxProfiles.SelectedIndex = 0;
-                }
-                catch (NullReferenceException error)
-                {
-                    owner.CreateMsgBox("Error: Current profile is empty.", error.Message);
-                }
-            }
-
-        }
+        #endregion
     }
 }

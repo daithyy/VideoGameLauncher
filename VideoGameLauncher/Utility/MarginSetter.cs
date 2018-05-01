@@ -8,6 +8,9 @@ using System.Windows.Controls;
 
 namespace VideoGameLauncher
 {
+    /// <summary>
+    /// Source: http://blogs.microsoft.co.il/blogs/eladkatz/archive/2011/05/29/what-is-the-easiest-way-to-set-spacing-between-items-in-stackpanel.aspx
+    /// </summary>
     public class MarginSetter
     {
         public static Thickness GetMargin(DependencyObject obj)

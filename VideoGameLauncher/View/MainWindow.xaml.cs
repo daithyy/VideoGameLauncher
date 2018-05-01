@@ -24,15 +24,16 @@ using VideoGameLauncher.View;
 
 namespace VideoGameLauncher
 {
+    /// <summary>
+    /// Extra Features: 
+    /// MahApps Metro Theme
+    /// Extended WPF Toolkit Color Picker
+    /// (Expired license requires a reinstall from NuGet Package Manager)
+    /// Newtonsoft JSON
+    /// MarginSetter class (StackPanel spacing)
+    /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        /*
-         * Extra Features:
-         * MahApps Metro Theme
-         * Extended WPF Toolkit Color Picker
-         * (Expired license requires a reinstall from NuGet Package Manager)
-         */
-
         #region Properties
 
         JsonSerializerSettings settings;
@@ -75,27 +76,11 @@ namespace VideoGameLauncher
 
         #endregion
 
-        #region Flyout Controls
+        #region Toolbar Controls
 
-        private async void FlyoutHandler(Flyout sender)
+        private void GitHub_Click(object sender, RoutedEventArgs e)
         {
-            sender.IsOpen = true;
-
-            foreach (Flyout fly in allFlyouts.FindChildren<Flyout>())
-                if (fly.Header != sender.Header)
-                {
-                    await Task.Run(() => AsyncFlyoutHandler(fly));
-                }
-
-            sender.IsOpen = true;
-        }
-
-        private void AsyncFlyoutHandler(Flyout fly)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                fly.IsOpen = false;
-            });
+            Process.Start("https://github.com/s00172994/VideoGameLauncher");
         }
 
         #endregion
@@ -352,15 +337,8 @@ namespace VideoGameLauncher
 
         #endregion
 
-        #region Click Events
+        #region Flyout Controls
 
-        // Main Window Toolbar Click Events
-        private void GitHub_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start("https://github.com/s00172994/VideoGameLauncher");
-        }
-
-        // Flyout Click Events
         private void PlayerCustomize_Click(object sender, RoutedEventArgs e)
         {
             FlyoutHandler(FlyoutPlayerCustomize);
@@ -388,7 +366,31 @@ namespace VideoGameLauncher
 
         }
 
-        // Player Customization Click Events
+        private async void FlyoutHandler(Flyout sender)
+        {
+            sender.IsOpen = true;
+
+            foreach (Flyout fly in allFlyouts.FindChildren<Flyout>())
+                if (fly.Header != sender.Header)
+                {
+                    await Task.Run(() => AsyncFlyoutHandler(fly));
+                }
+
+            sender.IsOpen = true;
+        }
+
+        private void AsyncFlyoutHandler(Flyout fly)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                fly.IsOpen = false;
+            });
+        }
+
+        #endregion
+
+        #region Player Customization Controls
+
         private void SaveProfile_Click(object sender, RoutedEventArgs e)
         {
             // Show save window dialog box.
