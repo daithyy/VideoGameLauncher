@@ -44,6 +44,27 @@ namespace VideoGameLauncher.View
 
             profiles = new ObservableCollection<string>();
             cbxProfiles.ItemsSource = profiles;
+
+            LoadDatabase();
+            LoadAvailableMods();
+        }
+
+        #endregion
+
+        #region Database Initialize
+
+        private void LoadDatabase()
+        {
+            db = new ModDBContainer();
+        }
+
+        private void LoadAvailableMods()
+        {
+            var query = db.Mods
+                .Select(x => x)
+                .ToList();
+
+            dataGridDownloadableMods.ItemsSource = query;
         }
 
         #endregion

@@ -157,7 +157,7 @@
                     <!-- My Mods DataGrid -->
                     <DataGrid
                     x:Name="dataGridMyMods" Grid.Column="1"
-                    AutoGenerateColumns="False"
+                    AutoGenerateColumns="True"
                     Style="{StaticResource AzureDataGrid}"
                     HorizontalScrollBarVisibility="Auto"
                     VerticalScrollBarVisibility="Auto">
@@ -206,7 +206,7 @@
                     <!-- Downloadable Mods DataGrid -->
                     <DataGrid
                     x:Name="dataGridDownloadableMods" Grid.Column="1"
-                    AutoGenerateColumns="False"
+                    AutoGenerateColumns="True"
                     HorizontalScrollBarVisibility="Auto"
                     VerticalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
