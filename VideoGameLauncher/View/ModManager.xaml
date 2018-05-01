@@ -213,7 +213,7 @@
                                 Controls:ButtonHelper.PreserveTextCase="True" Height="32"
                                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                 VerticalAlignment="Center" HorizontalAlignment="Stretch"
-                                Click="OpenFolder_Click">
+                                Click="DownloadMods_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Rectangle Width="18" Height="20">
                                     <Rectangle.Fill>

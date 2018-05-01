@@ -3,6 +3,7 @@ using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace VideoGameLauncher.View
 
         private MainWindow owner;
         private ObservableCollection<string> profiles;
+        private ObservableCollection<object> appliedMods;
         private ModDBContainer db;
 
         #endregion
@@ -76,6 +78,8 @@ namespace VideoGameLauncher.View
                 };
 
             dataGridDownloadableMods.ItemsSource = query.ToList();
+            appliedMods = new ObservableCollection<object>();
+            dataGridMyMods.ItemsSource = appliedMods;
 
             // Set Footer Count
             lblDownloadableModsCount.Content = query.Count();
@@ -153,7 +157,24 @@ namespace VideoGameLauncher.View
 
         private void OpenFolder_Click(object sender, RoutedEventArgs e)
         {
+            Process.Start(owner.BasePath);
+        }
 
+        private void DownloadMods_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedMods = dataGridDownloadableMods.SelectedItems;
+
+            try
+            {
+                foreach (var item in selectedMods)
+                {
+                    appliedMods.Add(item);
+                }
+            }
+            catch (NullReferenceException error)
+            {
+                owner.CreateMsgBox("Error: Applied mod is corrupt.", error.Message);
+            }
         }
 
         private void ApplyMods_Click(object sender, RoutedEventArgs e)
