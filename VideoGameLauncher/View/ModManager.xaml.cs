@@ -60,11 +60,22 @@ namespace VideoGameLauncher.View
 
         private void LoadAvailableMods()
         {
-            var query = db.Mods
-                .Select(x => x)
-                .ToList();
+            var query =
+                from m in db.Mods
+                join a in db.Authors on m.Id equals a.Id
+                select new
+                {
+                    ModId = m.Id,
+                    AuthorId = a.Id,
+                    Name = m.Name,
+                    Author = a.Name,
+                    Version = m.Version,
+                    Description = m.Description,
+                    Warnings = m.Warnings,
+                    Location = m.Location
+                };
 
-            dataGridDownloadableMods.ItemsSource = query;
+            dataGridDownloadableMods.ItemsSource = query.ToList();
         }
 
         #endregion

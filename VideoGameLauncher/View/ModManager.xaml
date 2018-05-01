@@ -157,22 +157,23 @@
                     <!-- My Mods DataGrid -->
                     <DataGrid
                     x:Name="dataGridMyMods" Grid.Column="1"
-                    AutoGenerateColumns="True"
+                    AutoGenerateColumns="False" CanUserResizeColumns="True"
                     Style="{StaticResource AzureDataGrid}"
                     HorizontalScrollBarVisibility="Auto"
-                    VerticalScrollBarVisibility="Auto">
+                    VerticalScrollBarVisibility="Auto"
+                    IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         Header="Selected"
                                         Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
                                         />
-                            <DataGridTextColumn Header="Name" Width="150"/>
-                            <DataGridTextColumn Header="Author" Width="100"/>
-                            <DataGridTextColumn Header="Version" Width="80"/>
-                            <DataGridTextColumn Header="Description" Width="200"/>
-                            <DataGridTextColumn Header="Warnings" Width="120"/>
-                            <DataGridTextColumn Header="File Location" Width="120"/>
+                            <DataGridTextColumn Header="Name" MaxWidth="150" Binding="{Binding Path=Name}"/>
+                            <DataGridTextColumn Header="Author" MaxWidth="100" Binding="{Binding Path=Authors}"/>
+                            <DataGridTextColumn Header="Version" MaxWidth="80" Binding="{Binding Path=Version}"/>
+                            <DataGridTextColumn Header="Description" MaxWidth="200" Binding="{Binding Path=Description}"/>
+                            <DataGridTextColumn Header="Warnings" MaxWidth="120" Binding="{Binding Path=Warnings}"/>
+                            <DataGridTextColumn Header="File Location" MaxWidth="120" Binding="{Binding Path=Location}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -206,21 +207,22 @@
                     <!-- Downloadable Mods DataGrid -->
                     <DataGrid
                     x:Name="dataGridDownloadableMods" Grid.Column="1"
-                    AutoGenerateColumns="True"
+                    AutoGenerateColumns="False" CanUserResizeColumns="True"
                     HorizontalScrollBarVisibility="Auto"
-                    VerticalScrollBarVisibility="Auto">
+                    VerticalScrollBarVisibility="Auto"
+                    IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
                                         Header="Selected"
                                         Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
                                         />
-                            <DataGridTextColumn Header="Name" Width="150"/>
-                            <DataGridTextColumn Header="Author" Width="100"/>
-                            <DataGridTextColumn Header="Version" Width="80"/>
-                            <DataGridTextColumn Header="Description" Width="200"/>
-                            <DataGridTextColumn Header="Warnings" Width="120"/>
-                            <DataGridTextColumn Header="File Location" Width="120"/>
+                            <DataGridTextColumn Header="Name" Width="150" Binding="{Binding Path=Name}"/>
+                            <DataGridTextColumn Header="Author" Width="100" Binding="{Binding Path=Author}"/>
+                            <DataGridTextColumn Header="Version" Width="80" Binding="{Binding Path=Version}"/>
+                            <DataGridTextColumn Header="Description" Width="200" Binding="{Binding Path=Description}"/>
+                            <DataGridTextColumn Header="Warnings" Width="120" Binding="{Binding Path=Warnings}"/>
+                            <DataGridTextColumn Header="File Location" Width="120" Binding="{Binding Path=Location}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
