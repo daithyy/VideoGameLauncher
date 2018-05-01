@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ModDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModDBStoreContainer">
+    <EntitySet Name="Mods" EntityType="ModDB.Store.Mods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Authors" EntityType="ModDB.Store.Authors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ModAuthor" EntityType="ModDB.Store.ModAuthor" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ModAuthor_Mod" Association="ModDB.Store.FK_ModAuthor_Mod">
+      <End Role="Mod" EntitySet="Mods" />
+      <End Role="ModAuthor" EntitySet="ModAuthor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModAuthor_Author" Association="ModDB.Store.FK_ModAuthor_Author">
+      <End Role="Author" EntitySet="Authors" />
+      <End Role="ModAuthor" EntitySet="ModAuthor" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Mods">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Version" Type="float" Nullable="false" />
+    <Property Name="Warnings" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Authors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModAuthor">
+    <Key>
+      <PropertyRef Name="Mods_Id" />
+      <PropertyRef Name="Authors_Id" />
+    </Key>
+    <Property Name="Mods_Id" Type="int" Nullable="false" />
+    <Property Name="Authors_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ModAuthor_Mod">
+    <End Role="Mod" Type="ModDB.Store.Mods" Multiplicity="1" />
+    <End Role="ModAuthor" Type="ModDB.Store.ModAuthor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ModAuthor">
+        <PropertyRef Name="Mods_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModAuthor_Author">
+    <End Role="ModAuthor" Type="ModDB.Store.ModAuthor" Multiplicity="*" />
+    <End Role="Author" Type="ModDB.Store.Authors" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ModAuthor">
+        <PropertyRef Name="Authors_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ModDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModDBContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Mods" EntityType="ModDB.Mod" />
+          <EntitySet Name="Authors" EntityType="ModDB.Author" />
+          <AssociationSet Name="ModAuthor" Association="ModDB.ModAuthor">
+            <End Role="Mod" EntitySet="Mods" />
+            <End Role="Author" EntitySet="Authors" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Mod">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Version" Type="Double" Nullable="false" />
+          <Property Name="Warnings" Type="String" Nullable="false" />
+          <Property Name="Location" Type="String" Nullable="false" />
+          <NavigationProperty Name="Authors" Relationship="ModDB.ModAuthor" FromRole="Mod" ToRole="Author" />
+        </EntityType>
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Mods" Relationship="ModDB.ModAuthor" FromRole="Author" ToRole="Mod" />
+        </EntityType>
+        <Association Name="ModAuthor">
+          <End Type="ModDB.Mod" Role="Mod" Multiplicity="*" />
+          <End Type="ModDB.Author" Role="Author" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModDBStoreContainer" CdmEntityContainer="ModDBContainer">
+    <EntitySetMapping Name="Mods">
+      <EntityTypeMapping TypeName="IsTypeOf(ModDB.Mod)">
+        <MappingFragment StoreEntitySet="Mods">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="Warnings" ColumnName="Warnings" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Authors">
+      <EntityTypeMapping TypeName="IsTypeOf(ModDB.Author)">
+        <MappingFragment StoreEntitySet="Authors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ModAuthor" TypeName="ModDB.ModAuthor" StoreEntitySet="ModAuthor">
+      <EndProperty Name="Mod">
+        <ScalarProperty Name="Id" ColumnName="Mods_Id" />
+      </EndProperty>
+      <EndProperty Name="Author">
+        <ScalarProperty Name="Id" ColumnName="Authors_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
