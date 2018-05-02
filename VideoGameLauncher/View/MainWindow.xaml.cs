@@ -448,7 +448,7 @@ namespace VideoGameLauncher
 
         #region Dialog Events
 
-        public void CreateMsgBox(string header, string text)
+        public static void CreateMsgBox(string header, string text)
         {
             var messageWindow = new MsgBox(header, text);
 

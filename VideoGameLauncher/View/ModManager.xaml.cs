@@ -28,7 +28,7 @@ namespace VideoGameLauncher.View
 
         private MainWindow owner;
         private ObservableCollection<string> profiles;
-        private ObservableCollection<object> appliedMods;
+        public ObservableCollection<object> AppliedMods;
         private ModDBContainer db;
 
         #endregion
@@ -83,12 +83,12 @@ namespace VideoGameLauncher.View
                 };
 
             dataGridDownloadableMods.ItemsSource = query.ToList();
-            appliedMods = new ObservableCollection<object>();
-            dataGridMyMods.ItemsSource = appliedMods;
+            AppliedMods = new ObservableCollection<object>();
+            dataGridMyMods.ItemsSource = AppliedMods;
 
             // Set Footer Count
             lblDownloadableModsCount.Content = query.Count();
-            lblMyModsCount.Content = appliedMods.Count;
+            lblMyModsCount.Content = AppliedMods.Count;
         }
 
         #endregion
@@ -110,7 +110,7 @@ namespace VideoGameLauncher.View
                 }
                 catch (InvalidCastException error)
                 {
-                    owner.CreateMsgBox("Error: Invalid profile type added.", error.Message);
+                    MainWindow.CreateMsgBox("Error: Invalid profile type added.", error.Message);
                 }
             }
         }
@@ -126,7 +126,7 @@ namespace VideoGameLauncher.View
                 }
                 catch (NullReferenceException error)
                 {
-                    owner.CreateMsgBox("Error: Current profile is empty.", error.Message);
+                    MainWindow.CreateMsgBox("Error: Current profile is empty.", error.Message);
                 }
             }
 
@@ -141,10 +141,10 @@ namespace VideoGameLauncher.View
         {
             if (dataGridMyMods.SelectedItem != null)
             {
-                appliedMods.Remove(dataGridMyMods.SelectedItem);
+                AppliedMods.Remove(dataGridMyMods.SelectedItem);
 
                 // Set Footer Count
-                lblMyModsCount.Content = appliedMods.Count;
+                lblMyModsCount.Content = AppliedMods.Count;
             }
         }
 
@@ -162,9 +162,9 @@ namespace VideoGameLauncher.View
             if (dataGridMyMods.SelectedItem == null)
                 return;
 
-            int currentIndex = appliedMods.IndexOf(dataGridMyMods.SelectedItem);
+            int currentIndex = AppliedMods.IndexOf(dataGridMyMods.SelectedItem);
             if (currentIndex > 0)
-                appliedMods.Move(currentIndex, currentIndex - 1);
+                AppliedMods.Move(currentIndex, currentIndex - 1);
         }
 
         private void DecreasePriority_Click(object sender, RoutedEventArgs e)
@@ -172,9 +172,9 @@ namespace VideoGameLauncher.View
             if (dataGridMyMods.SelectedItem == null)
                 return;
 
-            int currentIndex = appliedMods.IndexOf(dataGridMyMods.SelectedItem);
-            if (currentIndex != -1 && currentIndex < appliedMods.Count - 1)
-                appliedMods.Move(currentIndex, currentIndex + 1);
+            int currentIndex = AppliedMods.IndexOf(dataGridMyMods.SelectedItem);
+            if (currentIndex != -1 && currentIndex < AppliedMods.Count - 1)
+                AppliedMods.Move(currentIndex, currentIndex + 1);
         }
 
         private void OpenFolder_Click(object sender, RoutedEventArgs e)
@@ -203,7 +203,7 @@ namespace VideoGameLauncher.View
             if (controller.IsCanceled) // End operation
             {
                 // No mods have been downloaded
-                owner.CreateMsgBox("Operation Cancelled", "No mods have been downloaded.");
+                MainWindow.CreateMsgBox("Operation Cancelled", "No mods have been downloaded.");
             }
             else
             {
@@ -212,16 +212,16 @@ namespace VideoGameLauncher.View
                 {
                     foreach (var item in selectedMods)
                     {
-                        appliedMods.Add(item);
+                        AppliedMods.Add(item);
                     }
                 }
                 catch (NullReferenceException error)
                 {
-                    owner.CreateMsgBox("Error: Applied mod is corrupt.", error.Message);
+                    MainWindow.CreateMsgBox("Error: Applied mod is corrupt.", error.Message);
                 }
 
                 // Set Footer Count
-                lblMyModsCount.Content = appliedMods.Count;
+                lblMyModsCount.Content = AppliedMods.Count;
             }
         }
 
@@ -232,10 +232,10 @@ namespace VideoGameLauncher.View
 
         private void RestoreFiles_Click(object sender, RoutedEventArgs e)
         {
-            appliedMods.Clear();
+            AppliedMods.Clear();
 
             // Set Footer Count
-            lblMyModsCount.Content = appliedMods.Count;
+            lblMyModsCount.Content = AppliedMods.Count;
         }
 
         private void LaunchGame_Click(object sender, RoutedEventArgs e)
@@ -249,10 +249,14 @@ namespace VideoGameLauncher.View
 
         private void CreateNewMod()
         {
-            var messageWindow = new ModBox();
+            // Create new window object
+            var window = new ModBox();
 
-            messageWindow.Show();
-            messageWindow.Focus();
+            // Set the owner of this new object
+            window.Owner = this;
+
+            // Display the new window
+            window.ShowDialog();
         }
 
         #endregion
