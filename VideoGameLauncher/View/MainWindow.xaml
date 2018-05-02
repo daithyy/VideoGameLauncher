@@ -203,7 +203,7 @@
         <Button x:Name="btnPlay" Style="{StaticResource AccentedSquareButtonStyle}" Grid.Row="1" Grid.Column="1"
                 Content="PLAY" HorizontalAlignment="Left" Controls:ButtonHelper.PreserveTextCase="True"
                 VerticalAlignment="Center" Width="150" Height="50"
-                FontSize="16" BorderBrush="{x:Null}" />
+                FontSize="16" BorderBrush="{x:Null}" Click="Play_Click" />
 
         <Button x:Name="btnUpdate" Style="{StaticResource AccentedSquareButtonStyle}" Grid.Row="1" Grid.Column="2"
                 Content="Update" HorizontalAlignment="Right" Controls:ButtonHelper.PreserveTextCase="True"

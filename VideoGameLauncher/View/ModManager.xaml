@@ -36,7 +36,7 @@
             <Label x:Name="lblProfile" Content="Profile:" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="14"/>
             <ComboBox x:Name="cbxProfiles" Width="180" Height="10" Margin="5,0,0,0"/>
             <Button x:Name="btnAddProfile" Width="33" Height="33" VerticalAlignment="Center" Style="{DynamicResource MetroCircleButtonStyle}"
-                    Margin="10,0,0,0" Click="btnAddProfile_Click">
+                    Margin="10,0,0,0" Click="btnAddProfile_Click" ToolTip="Add Profile">
                 <Rectangle Width="10" Height="10">
                     <Rectangle.Fill>
                         <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_add}" />
@@ -44,7 +44,8 @@
                 </Rectangle>
             </Button>
 
-            <Button x:Name="btnDeleteProfile" Width="33" Height="33" VerticalAlignment="Center" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnDeleteProfile_Click">
+            <Button x:Name="btnDeleteProfile" Width="33" Height="33" VerticalAlignment="Center" Style="{DynamicResource MetroCircleButtonStyle}" Click="btnDeleteProfile_Click"
+                    ToolTip="Delete Profile">
                 <Rectangle Width="10" Height="2">
                     <Rectangle.Fill>
                         <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_minus}" />
@@ -57,7 +58,7 @@
                     Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="33" 
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                     VerticalAlignment="Center" BorderBrush="{x:Null}" 
-                    Click="CreateMod_Click">
+                    Click="CreateMod_Click" ToolTip="Create New Mod">
                 <Rectangle Width="18" Height="20">
                     <Rectangle.Fill>
                         <VisualBrush Visual="{DynamicResource appbar_page_add}" />
@@ -70,7 +71,7 @@
                     Controls:ButtonHelper.PreserveTextCase="True" Height="32" Width="33" 
                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                     VerticalAlignment="Center" BorderBrush="{x:Null}" 
-                    Click="DeleteMod_Click">
+                    Click="DeleteMod_Click" ToolTip="Remove Mod">
                 <Rectangle Width="18" Height="20">
                     <Rectangle.Fill>
                         <VisualBrush Visual="{DynamicResource appbar_page_delete}" />
@@ -147,7 +148,7 @@
                                 Controls:ButtonHelper.PreserveTextCase="True" Height="32"
                                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                 VerticalAlignment="Center" HorizontalAlignment="Stretch"
-                                Click="RestoreFiles_Click"/>
+                                Click="RestoreFiles_Click" ToolTip="Reset Your Applied Mods List"/>
                             <Button Style="{StaticResource SquareButtonStyle}"
                                 Content="Launch Game"                                
                                 Controls:ButtonHelper.PreserveTextCase="True" Height="32"

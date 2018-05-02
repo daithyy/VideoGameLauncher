@@ -47,24 +47,12 @@ namespace VideoGameLauncher
         public MainWindow()
         {
             InitializeComponent();
-
-            // Load SVG Image using SVG2XAML converter.
-            using (FileStream stream = new FileStream(LogoFilePath, FileMode.Open, FileAccess.Read))
-                try
-                {
-                    imgLogo.Source = SvgReader.Load(stream);
-                }
-                catch (FileNotFoundException exception)
-                {
-                    TextBlock error_text_block = new TextBlock();
-                    error_text_block.Text = exception.Message;
-                    Content = error_text_block;
-                }
+            LoadImages();
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            // Set JSON Serializing settings for saving/loading data.
+            // Set JSON Serialization settings to keep all type names.
             settings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.All
@@ -74,9 +62,23 @@ namespace VideoGameLauncher
             CreatePlayerCustomizeData();
         }
 
+        private void LoadImages()
+        {
+            try
+            {
+                // Load SVG Image using SVG2XAML converter.
+                using (FileStream stream = new FileStream(LogoFilePath, FileMode.Open, FileAccess.Read))
+                    imgLogo.Source = SvgReader.Load(stream);
+            }
+            catch (FileNotFoundException error)
+            {
+                CreateMsgBox("Error: Logo image not found.\n", error.Message);
+            }
+        }
+
         #endregion
 
-        #region Toolbar Controls
+        #region Window Commands
 
         private void GitHub_Click(object sender, RoutedEventArgs e)
         {
@@ -175,6 +177,22 @@ namespace VideoGameLauncher
             cbxUtility.SelectedIndex = 0;
 
             #endregion
+        }
+
+        private Player CreatePlayer()
+        {
+            return new Player(NameBox.Text,
+                ClrPrimary.SelectedColor, ClrSecondary.SelectedColor,
+                ClrLights.SelectedColor, ClrVisor.SelectedColor,
+                ClrHolo.SelectedColor)
+            {
+                CurrentWeapon = (Weapon)cbxWeapon.SelectedItem,
+                Helmet = (Armor)cbxHelmet.SelectedItem,
+                Shoulders = (Armor)cbxShoulders.SelectedItem,
+                Chest = (Armor)cbxChest.SelectedItem,
+                Wrist = (Armor)cbxWrist.SelectedItem,
+                Utility = (Armor)cbxUtility.SelectedItem
+            };
         }
 
         private void LoadPlayerCustomizeData(Player player)
@@ -339,6 +357,36 @@ namespace VideoGameLauncher
 
         #region Flyout Controls
 
+        private async void FlyoutHandler(Flyout sender)
+        {
+            sender.IsOpen = true;
+
+            foreach (Flyout fly in allFlyouts.FindChildren<Flyout>())
+                if (fly.Header != sender.Header)
+                {
+                    await Task.Run(() => AsyncFlyoutHandler(fly));
+                }
+
+            sender.IsOpen = true;
+        }
+
+        private void AsyncFlyoutHandler(Flyout fly)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                fly.IsOpen = false;
+            });
+        }
+
+        #endregion
+
+        #region Tile Controls
+
+        private void Play_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void PlayerCustomize_Click(object sender, RoutedEventArgs e)
         {
             FlyoutHandler(FlyoutPlayerCustomize);
@@ -366,30 +414,9 @@ namespace VideoGameLauncher
 
         }
 
-        private async void FlyoutHandler(Flyout sender)
-        {
-            sender.IsOpen = true;
-
-            foreach (Flyout fly in allFlyouts.FindChildren<Flyout>())
-                if (fly.Header != sender.Header)
-                {
-                    await Task.Run(() => AsyncFlyoutHandler(fly));
-                }
-
-            sender.IsOpen = true;
-        }
-
-        private void AsyncFlyoutHandler(Flyout fly)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                fly.IsOpen = false;
-            });
-        }
-
         #endregion
 
-        #region Player Customization Controls
+        #region JSON Data
 
         private void SaveProfile_Click(object sender, RoutedEventArgs e)
         {
@@ -426,27 +453,7 @@ namespace VideoGameLauncher
 
         #endregion
 
-        #region Save Data
-
-        private Player CreatePlayer()
-        {
-            return new Player(NameBox.Text, 
-                ClrPrimary.SelectedColor, ClrSecondary.SelectedColor,
-                ClrLights.SelectedColor, ClrVisor.SelectedColor, 
-                ClrHolo.SelectedColor)
-            {
-                CurrentWeapon = (Weapon)cbxWeapon.SelectedItem,
-                Helmet = (Armor)cbxHelmet.SelectedItem,
-                Shoulders = (Armor)cbxShoulders.SelectedItem,
-                Chest = (Armor)cbxChest.SelectedItem,
-                Wrist = (Armor)cbxWrist.SelectedItem,
-                Utility = (Armor)cbxUtility.SelectedItem
-            };
-        }
-
-        #endregion
-
-        #region Dialog Events
+        #region Dialog Box Events
 
         public static void CreateMsgBox(string header, string text)
         {
