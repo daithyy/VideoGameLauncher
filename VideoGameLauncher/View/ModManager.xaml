@@ -264,5 +264,8 @@
             </TabItem>
         </Controls:MetroAnimatedTabControl>
 
+        <!-- Loading Animation -->
+        <Controls:ProgressRing x:Name="progressRing" IsActive="False" Grid.ColumnSpan="2" Grid.Row="1"/>
+
     </Grid>
 </Controls:MetroWindow>

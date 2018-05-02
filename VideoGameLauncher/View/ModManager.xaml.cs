@@ -3,6 +3,7 @@ using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -65,10 +66,13 @@ namespace VideoGameLauncher.View
             db = new ModDBContainer();
         }
 
-        private void LoadAvailableMods()
+        private async void LoadAvailableMods()
         {
-            var query =
-                from m in db.Mods
+            // Show Progress Ring
+            progressRing.IsActive = true;
+
+            var query = await
+                (from m in db.Mods
                 join a in db.Authors on m.Id equals a.Id
                 select new
                 {
@@ -80,15 +84,18 @@ namespace VideoGameLauncher.View
                     Description = m.Description,
                     Warnings = m.Warnings,
                     Location = m.Location
-                };
+                }).ToListAsync();
 
-            dataGridDownloadableMods.ItemsSource = query.ToList();
+            dataGridDownloadableMods.ItemsSource = query;
             AppliedMods = new ObservableCollection<object>();
             dataGridMyMods.ItemsSource = AppliedMods;
 
             // Set Footer Count
             lblDownloadableModsCount.Content = query.Count();
             lblMyModsCount.Content = AppliedMods.Count;
+
+            // Hide Progress Ring
+            progressRing.IsActive = false;
         }
 
         #endregion
