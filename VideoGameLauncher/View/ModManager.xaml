@@ -173,7 +173,7 @@
                                         Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
                                         />
                             <DataGridTextColumn Header="Name" MaxWidth="150" Binding="{Binding Path=Name}"/>
-                            <DataGridTextColumn Header="Author" MaxWidth="100" Binding="{Binding Path=Authors}"/>
+                            <DataGridTextColumn Header="Author" MaxWidth="100" Binding="{Binding Path=Author}"/>
                             <DataGridTextColumn Header="Version" MaxWidth="80" Binding="{Binding Path=Version}"/>
                             <DataGridTextColumn Header="Description" MaxWidth="200" Binding="{Binding Path=Description}"/>
                             <DataGridTextColumn Header="Warnings" MaxWidth="120" Binding="{Binding Path=Warnings}"/>
@@ -266,7 +266,7 @@
         </Controls:MetroAnimatedTabControl>
 
         <!-- Loading Animation -->
-        <Controls:ProgressRing x:Name="progressRing" IsActive="False" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Controls:ProgressRing x:Name="progressRing" IsActive="False" Grid.Row="1"/>
 
     </Grid>
 </Controls:MetroWindow>

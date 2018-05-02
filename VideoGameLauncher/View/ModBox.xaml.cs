@@ -36,21 +36,23 @@ namespace VideoGameLauncher
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-                Mod newMod = new Mod();
-                Author newAuthor = new Author();
-                newAuthor.Name = AuthorBox.Text;
+            {            
+                var newMod = new
+                {
+                    Name = NameBox.Text,
+                    Author = AuthorBox.Text,
+                    Version = double.Parse(VersionBox.Text),
+                    Description = DescriptionBox.Text,
+                    Warnings = WarningBox.Text,
+                    Location = LocationBox.Text
+                };
 
-                newMod.Name = NameBox.Text;
-                newMod.Authors.Add(newAuthor);
-                newMod.Version = double.Parse(VersionBox.Text);
-                newMod.Description = DescriptionBox.Text;
-                newMod.Warnings = WarningBox.Text;
-                newMod.Location = LocationBox.Text;
-
+                // Add to Applied Mods list
                 owner.AppliedMods.Add(newMod);
+
                 // Update Footer Count
                 owner.lblMyModsCount.Content = owner.AppliedMods.Count;
+
                 Close();
             }
             catch (NullReferenceException emptyException)

@@ -71,7 +71,7 @@ namespace VideoGameLauncher.View
             // Show Progress Ring
             progressRing.IsActive = true;
 
-            var query = await
+            var query = await // Wait for this query to load
                 (from m in db.Mods
                 join a in db.Authors on m.Id equals a.Id
                 select new
@@ -84,7 +84,8 @@ namespace VideoGameLauncher.View
                     Description = m.Description,
                     Warnings = m.Warnings,
                     Location = m.Location
-                }).ToListAsync();
+                }).ToListAsync(); // Do this asynchronous casting task
+            // Continue
 
             dataGridDownloadableMods.ItemsSource = query;
             AppliedMods = new ObservableCollection<object>();
@@ -227,7 +228,7 @@ namespace VideoGameLauncher.View
                     MainWindow.CreateMsgBox("Error: Applied mod is corrupt.", error.Message);
                 }
 
-                // Set Footer Count
+                // Update Footer Count
                 lblMyModsCount.Content = AppliedMods.Count;
             }
         }
@@ -241,7 +242,7 @@ namespace VideoGameLauncher.View
         {
             AppliedMods.Clear();
 
-            // Set Footer Count
+            // Update Footer Count
             lblMyModsCount.Content = AppliedMods.Count;
         }
 
