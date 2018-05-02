@@ -1,0 +1,66 @@
+﻿<Controls:MetroWindow x:Class="VideoGameLauncher.ModBox"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="Alert" SizeToContent="WidthAndHeight"
+                      ResizeMode="NoResize" ShowInTaskbar="False" WindowStyle="None" AllowsTransparency="True"
+                      WindowStartupLocation="CenterScreen" Topmost="True" TextOptions.TextFormattingMode="Display"
+                      BorderThickness="1">
+    <Grid>
+        <Border>
+            <Grid>
+                <StackPanel Orientation="Vertical" Margin="20" VerticalAlignment="Top"
+                        HorizontalAlignment="Stretch">
+                    <TextBlock TextWrapping="Wrap" Foreground="White" HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               VerticalAlignment="Top" IsHitTestVisible="True" TextOptions.TextFormattingMode="Display"
+                               FontFamily="Segoe UI" FontSize="14" Width="361" Height="42" FontWeight="Bold">
+                    <Run x:Name="Header" Text="Create Mod" />
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                        <Label FontSize="14">Name:</Label>
+                        <TextBox x:Name="NameBox" Width="200" Height="10" Margin="54,0,0,0"
+                         Controls:TextBoxHelper.Watermark="No Name" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <Label FontSize="14">Author:</Label>
+                        <TextBox x:Name="AuthorBox" Width="200" Height="10" Margin="47,0,0,0"
+                         Controls:TextBoxHelper.Watermark="No Author" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <Label FontSize="14">Version:</Label>
+                        <TextBox x:Name="VersionBox" Width="200" Height="10" Margin="45,0,0,0"
+                         Controls:TextBoxHelper.Watermark="No Version" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <Label FontSize="14">Description:</Label>
+                        <TextBox x:Name="DescriptionBox" Width="200" Height="10" Margin="21,0,0,0"
+                         Controls:TextBoxHelper.Watermark="No Description" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <Label FontSize="14">Warnings:</Label>
+                        <TextBox x:Name="WarningBox" Width="200" Height="10" Margin="33,0,0,0"
+                         Controls:TextBoxHelper.Watermark="No Warnings" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <Label FontSize="14">Location:</Label>
+                        <TextBox x:Name="LocationBox" Width="200" Height="10" Margin="38,0,0,0"
+                         Controls:TextBoxHelper.Watermark="No Location" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,20,10,0" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Button Style="{StaticResource AccentedSquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True"
+                    x:Name="btnAdd" Content="Add" Click="AddButton_Click"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="100" Height="35"
+                    FontSize="14" FontFamily="Segoe UI" BorderBrush="{x:Null}" />
+                        <Button Style="{StaticResource AccentedSquareButtonStyle}" Controls:ButtonHelper.PreserveTextCase="True"
+                    x:Name="btnClose" Content="Close" Click="CloseButton_Click" Margin="10,0,0,0"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="100" Height="35"
+                    FontSize="14" FontFamily="Segoe UI" BorderBrush="{x:Null}" />
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+    </Grid>
+</Controls:MetroWindow>

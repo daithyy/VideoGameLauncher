@@ -88,6 +88,7 @@ namespace VideoGameLauncher.View
 
             // Set Footer Count
             lblDownloadableModsCount.Content = query.Count();
+            lblMyModsCount.Content = appliedMods.Count;
         }
 
         #endregion
@@ -133,12 +134,18 @@ namespace VideoGameLauncher.View
 
         private void CreateMod_Click(object sender, RoutedEventArgs e)
         {
-
+            CreateNewMod();
         }
 
         private void DeleteMod_Click(object sender, RoutedEventArgs e)
         {
+            if (dataGridMyMods.SelectedItem != null)
+            {
+                appliedMods.Remove(dataGridMyMods.SelectedItem);
 
+                // Set Footer Count
+                lblMyModsCount.Content = appliedMods.Count;
+            }
         }
 
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
@@ -152,12 +159,22 @@ namespace VideoGameLauncher.View
 
         private void IncreasePriority_Click(object sender, RoutedEventArgs e)
         {
+            if (dataGridMyMods.SelectedItem == null)
+                return;
 
+            int currentIndex = appliedMods.IndexOf(dataGridMyMods.SelectedItem);
+            if (currentIndex > 0)
+                appliedMods.Move(currentIndex, currentIndex - 1);
         }
 
         private void DecreasePriority_Click(object sender, RoutedEventArgs e)
         {
+            if (dataGridMyMods.SelectedItem == null)
+                return;
 
+            int currentIndex = appliedMods.IndexOf(dataGridMyMods.SelectedItem);
+            if (currentIndex != -1 && currentIndex < appliedMods.Count - 1)
+                appliedMods.Move(currentIndex, currentIndex + 1);
         }
 
         private void OpenFolder_Click(object sender, RoutedEventArgs e)
@@ -165,20 +182,46 @@ namespace VideoGameLauncher.View
             Process.Start(owner.BasePath);
         }
 
-        private void DownloadMods_Click(object sender, RoutedEventArgs e)
+        private async void DownloadMods_Click(object sender, RoutedEventArgs e)
         {
             var selectedMods = dataGridDownloadableMods.SelectedItems;
 
-            try
+            var mySettings = new MetroDialogSettings()
             {
-                foreach (var item in selectedMods)
-                {
-                    appliedMods.Add(item);
-                }
+                NegativeButtonText = "Cancel",
+                AnimateShow = false,
+                AnimateHide = false
+            };
+
+            var controller = await this.ShowProgressAsync("Downloading Mods", "Please wait ...", settings: mySettings);
+            controller.SetIndeterminate();
+            controller.SetCancelable(true); // Shows cancel button
+
+            await Task.Delay(4000);
+            await controller.CloseAsync();
+
+            if (controller.IsCanceled) // End operation
+            {
+                // No mods have been downloaded
+                owner.CreateMsgBox("Operation Cancelled", "No mods have been downloaded.");
             }
-            catch (NullReferenceException error)
+            else
             {
-                owner.CreateMsgBox("Error: Applied mod is corrupt.", error.Message);
+                // Add selected mods to applied mods collection
+                try
+                {
+                    foreach (var item in selectedMods)
+                    {
+                        appliedMods.Add(item);
+                    }
+                }
+                catch (NullReferenceException error)
+                {
+                    owner.CreateMsgBox("Error: Applied mod is corrupt.", error.Message);
+                }
+
+                // Set Footer Count
+                lblMyModsCount.Content = appliedMods.Count;
             }
         }
 
@@ -189,12 +232,27 @@ namespace VideoGameLauncher.View
 
         private void RestoreFiles_Click(object sender, RoutedEventArgs e)
         {
+            appliedMods.Clear();
 
+            // Set Footer Count
+            lblMyModsCount.Content = appliedMods.Count;
         }
 
         private void LaunchGame_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        #endregion
+
+        #region Dialog Events
+
+        private void CreateNewMod()
+        {
+            var messageWindow = new ModBox();
+
+            messageWindow.Show();
+            messageWindow.Focus();
         }
 
         #endregion

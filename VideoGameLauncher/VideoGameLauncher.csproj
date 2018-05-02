@@ -147,6 +147,9 @@
     <Compile Include="View\ModManager.xaml.cs">
       <DependentUpon>ModManager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ModBox.xaml.cs">
+      <DependentUpon>ModBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MsgBox.xaml.cs">
       <DependentUpon>MsgBox.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
     <Page Include="View\ModManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ModBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\MsgBox.xaml">
       <Generator>MSBuild:Compile</Generator>
