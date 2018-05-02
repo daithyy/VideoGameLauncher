@@ -248,7 +248,7 @@ namespace VideoGameLauncher.View
 
         private void LaunchGame_Click(object sender, RoutedEventArgs e)
         {
-
+            owner.PlayGame();
         }
 
         #endregion

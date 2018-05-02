@@ -21,6 +21,7 @@ using Newtonsoft.Json;
 using VideoGameLauncher.Classes;
 using Microsoft.Win32;
 using VideoGameLauncher.View;
+using System.ComponentModel;
 
 namespace VideoGameLauncher
 {
@@ -31,6 +32,8 @@ namespace VideoGameLauncher
     /// (Expired license requires a reinstall from NuGet Package Manager)
     /// Newtonsoft JSON
     /// MarginSetter class (StackPanel spacing)
+    /// ᗢ.exe Game by tak, kat on itch.io (Not created by me)
+    /// https://tak.itch.io/meow
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
@@ -39,6 +42,7 @@ namespace VideoGameLauncher
         JsonSerializerSettings settings;
         public readonly string BasePath = Directory.GetCurrentDirectory();
         private readonly string LogoFilePath = "Images\\logo.svg";
+        private readonly string GamePath = "Game\\ᗢ.exe";
 
         #endregion
 
@@ -384,7 +388,7 @@ namespace VideoGameLauncher
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-
+            PlayGame();
         }
 
         private void PlayerCustomize_Click(object sender, RoutedEventArgs e)
@@ -461,6 +465,18 @@ namespace VideoGameLauncher
 
             messageWindow.Show();
             messageWindow.Focus();
+        }
+
+        public void PlayGame()
+        {
+            try
+            {
+                Process.Start(GamePath);
+            }
+            catch (Win32Exception error)
+            {
+                CreateMsgBox("Error: ᗢ Game not installed.\n", error.Message);
+            }
         }
 
         #endregion
