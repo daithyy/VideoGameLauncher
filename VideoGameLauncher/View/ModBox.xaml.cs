@@ -49,6 +49,8 @@ namespace VideoGameLauncher
                 newMod.Location = LocationBox.Text;
 
                 owner.AppliedMods.Add(newMod);
+                // Update Footer Count
+                owner.lblMyModsCount.Content = owner.AppliedMods.Count;
                 Close();
             }
             catch (NullReferenceException emptyException)
